@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_app/consts/theme_data.dart';
+//import 'package:flutter_app/consts/theme_data.dart';
 // import 'package:flutter_app/main.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/card.dart';
@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 // ignore: unused_import
 import '../consts/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -58,7 +59,7 @@ class _UserScreenState extends State<UserScreen> {
                     top = constraints.biggest.height;
                     return Container(
                       decoration: BoxDecoration(
-                        color: Colors.pink[200],
+                        color: Theme.of(context).appBarTheme.backgroundColor!,
                       ),
                       child: FlexibleSpaceBar(
                         collapseMode: CollapseMode.parallax,
@@ -147,7 +148,7 @@ class _UserScreenState extends State<UserScreen> {
                           child: ListTile(
                             title: Text('Sản phẩm đã thích'),
                             trailing: Icon(Icons.chevron_right_rounded),
-                            leading: Icon(Icons.link_rounded),
+                            leading: Icon(Feather.heart),
                           ),
                         ),
                       ),
@@ -160,7 +161,7 @@ class _UserScreenState extends State<UserScreen> {
                           child: ListTile(
                             title: Text('Cart'),
                             trailing: Icon(Icons.chevron_right_rounded),
-                            leading: Icon(Icons.ac_unit_outlined),
+                            leading: Icon(Feather.shopping_cart),
                           ),
                         ),
                       ),
@@ -211,7 +212,12 @@ class _UserScreenState extends State<UserScreen> {
                       ),
                       ListTileSwitch(
                         value: themeChange.darkTheme,
-                        leading: const Icon(Icons.dark_mode_rounded),
+                        leading: Icon(
+                          themeChange.darkTheme
+                              ? Icons.dark_mode_rounded
+                              : Icons.light_mode_rounded,
+                          color: Theme.of(context).splashColor,
+                        ),
                         onChanged: (value) {
                           setState(() {
                             themeChange.darkTheme = value;
@@ -219,9 +225,10 @@ class _UserScreenState extends State<UserScreen> {
                         },
                         visualDensity: VisualDensity.comfortable,
                         switchType: SwitchType.cupertino,
-                        switchActiveColor: Colors.indigo,
-                        title: const Text(
-                          'Dark Theme',
+                        switchActiveColor: Theme.of(context).splashColor,
+                        title: Text(
+                          themeChange.darkTheme ? 'Dark Theme' : 'Light Theme',
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                       userListTitle('Logout', 'subTitle', 4, context),

@@ -5,22 +5,24 @@ import 'package:flutter_app/consts/_list/Model/product_list_model.dart';
 import 'package:flutter_app/screens/Widget/product_details.dart';
 import 'package:provider/provider.dart';
 
-class FeedProducts extends StatefulWidget {
+class FeedProductsHome extends StatefulWidget {
   @override
-  _FeedProductsState createState() => _FeedProductsState();
+  _FeedProductsHomeState createState() => _FeedProductsHomeState();
 }
 
-class _FeedProductsState extends State<FeedProducts> {
+class _FeedProductsHomeState extends State<FeedProductsHome> {
   @override
   Widget build(BuildContext context) {
     final productAttributes = Provider.of<ProductModel>(context);
     // List<ProductModel> productModel = productsViewModel.productListModel;
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed(productDetails.routeName, arguments: productAttributes.id),
+      onTap: () => Navigator.of(context).pushNamed(
+        productDetails.routeName,
+        arguments: productAttributes.id,
+      ),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 4.0),
-        width: 150,
+        width: 80,
         height: 150,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Colors.white),
@@ -32,10 +34,10 @@ class _FeedProductsState extends State<FeedProducts> {
                 width: double.infinity,
                 constraints: BoxConstraints(
                     minHeight: 50,
-                    maxHeight: MediaQuery.of(context).size.height * 0.18),
+                    maxHeight: MediaQuery.of(context).size.height * 0.15),
                 child: Image.asset(
                   'assets/images/healthyfood.png',
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
             ),
@@ -49,29 +51,15 @@ class _FeedProductsState extends State<FeedProducts> {
                     height: 4,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(left: 2, right: 2, top: 2),
                     child: Text(
-                      'Tên Sản Phẩm: ' + productAttributes.name,
+                      productAttributes.name,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(left: 5),
-                    margin: EdgeInsets.only(left: 5, bottom: 2, right: 3),
-                    child: Text(
-                      // ' _:VNĐ',
-                      productAttributes.price + "  VNĐ",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.indigo[500],
-                          fontWeight: FontWeight.w900),
                     ),
                   ),
                   Row(

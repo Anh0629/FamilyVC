@@ -1,21 +1,16 @@
-// import 'package:backdrop/app_bar.dart';
-// import 'package:backdrop/button.dart';
-// import 'package:backdrop/scaffold.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:carousel_pro/carousel_pro.dart';
-// ignore: import_of_legacy_library_into_null_safe
-// import 'package:carousel_pro/carousel_pro.dart';
-
-// import 'package:backdrop/sub_header.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
+import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
+import 'package:flutter_app/screens/Widget/category.dart';
+import 'package:flutter_app/screens/Widget/product_home_.dart';
 import 'package:flutter_app/screens/feeds.dart';
-// import 'package:flutter_app/consts/theme_data.dart';
-// import 'package:flutter_app/screens/Widget/Feeds_products.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_swiper/flutter_swiper.dart';
-
+import 'package:provider/provider.dart';
 import 'Widget/popular_products.dart';
-import 'Widget/shop_home.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
@@ -46,11 +41,24 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    print("Home inistate");
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var course;
+    CategoryViewModel categoryViewModel =
+        Provider.of<CategoryViewModel>(context);
+
+    ProductViewModel productsViewModel = Provider.of<ProductViewModel>(context);
+    // categoryViewModel.setCategoryListModel(categoryListModel)
+
+    // final productAttributes = Provider.of<ProductModel>(context);
+    // var course;
     return new Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[200],
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
         title: Text("Trang Chủ "),
         // leading: BackdropToggleButton(
         //   icon: AnimatedIcons.home_menu,
@@ -80,23 +88,25 @@ class _HomeScreenState extends State<HomeScreen> {
                       ExactAssetImage(_carouselImage[1]),
                       ExactAssetImage(_carouselImage[2]),
                       ExactAssetImage(_carouselImage[3]),
-                      FittedBox(
-                        fit: BoxFit.fitWidth,
-                      )
+                      // FittedBox(
+                      //   fit: BoxFit.fitWidth,
+                      // )
                     ],
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                  color: Colors.pink[100],
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  color: Theme.of(context).appBarTheme.backgroundColor!,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Row(children: [
                       Container(
                         child: Text(
-                          'Gian Hang',
+                          'Danh mục',
                           style: TextStyle(
-                              color: Colors.indigo[500],
+                              color:
+                                  // ignore: deprecated_member_use
+                                  Theme.of(context).textSelectionColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -105,11 +115,70 @@ class _HomeScreenState extends State<HomeScreen> {
                       FlatButton(
                         onPressed: () {},
                         child: Text(
-                          'View All',
+                          'Xem tất cả',
                           style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                              color: Colors.indigo[500]),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                            color:
+                                // ignore: deprecated_member_use
+                                Theme.of(context).textSelectionColor,
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+                Container(
+                  child: Container(
+                    padding: const EdgeInsets.all(9.0),
+                    height: 150,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        print(
+                            "CategoryModel categoryModel categoryViewModel.categoryList[index];");
+                        CategoryModel categoryModel =
+                            categoryViewModel.categoryList[index];
+                        print(categoryModel.toString());
+                        return ChangeNotifierProvider.value(
+                          value: categoryModel,
+                          child: CategoryWidget(),
+                        );
+                      },
+                      itemCount: categoryViewModel.categoryList.length,
+                    ),
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  color: Theme.of(context).appBarTheme.backgroundColor!,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Row(children: [
+                      Container(
+                        child: Text(
+                          'Danh mục',
+                          style: TextStyle(
+                              color:
+                                  // ignore: deprecated_member_use
+                                  Theme.of(context).textSelectionColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Spacer(),
+                      // ignore: deprecated_member_use
+                      FlatButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Xem tất cả',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                            color:
+                                // ignore: deprecated_member_use
+                                Theme.of(context).textSelectionColor,
+                          ),
                         ),
                       ),
                     ]),
@@ -140,15 +209,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  color: Colors.pink[100],
-                  height: MediaQuery.of(context).size.height * 0.04,
+                  color: Theme.of(context).appBarTheme.backgroundColor!,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Row(children: [
                       Text(
                         'Mặt Hàng Nổi Bật',
                         style: TextStyle(
-                            color: Colors.indigo[500],
+                            color:
+                                // ignore: deprecated_member_use
+                                Theme.of(context).textSelectionColor,
                             fontWeight: FontWeight.bold),
                       ),
 
@@ -159,9 +230,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           'Tất Cả',
                           style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 15,
-                              color: Colors.indigo[500]),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 15,
+                            color:
+                                // ignore: deprecated_member_use
+                                Theme.of(context).textSelectionColor,
+                          ),
                         ),
                       ),
                     ]),
@@ -184,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.05,
-                  color: Colors.pink[100],
+                  color: Theme.of(context).appBarTheme.backgroundColor,
                   child: Container(
                       margin: EdgeInsets.only(left: 8),
                       child: Row(
@@ -192,25 +266,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             'Gian Hàng',
                             style: TextStyle(
-                                color: Colors.indigo[500],
+                                // ignore: deprecated_member_use
+                                color: Theme.of(context).textSelectionColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           Spacer(),
                           // ignore: deprecated_member_use
 
-                          FlatButton(
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen())),
-                            child: Text(
-                              'Quay lại Home',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 15,
-                                  color: Colors.indigo[500]),
-                            ),
-                          ),
+                          // ignore: deprecated_member_use
+                          // FlatButton(
+                          //   onPressed: () => Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) => HomeScreen())),
+                          //   child: Text(
+                          //     'Quay lại Home',
+                          //     style: TextStyle(
+                          //         fontWeight: FontWeight.w800,
+                          //         fontSize: 15,
+                          //         color: Colors.indigo[500]),
+                          //   ),
+                          // ),
 
                           // Spacer(),
                         ],
@@ -218,25 +294,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Column(children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.7,
+                    padding: EdgeInsets.all(5.0),
+                    height: MediaQuery.of(context).size.height * 0.5,
                     child: GridView.count(
                         shrinkWrap: true,
                         crossAxisCount: 3,
                         childAspectRatio: 200 / 280,
                         crossAxisSpacing: 8,
                         mainAxisSpacing: 8,
-                        children: List.generate(30, (index) {
-                          return shopHome();
+                        children: List.generate(
+                            productsViewModel.productList.length, (index) {
+                          return ChangeNotifierProvider.value(
+                            value: productsViewModel.productList[index],
+                            child: FeedProductsHome(),
+                          );
                         })),
                   ),
                 ]),
                 Container(
-                  padding: const EdgeInsets.all(8.0),
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  padding: const EdgeInsets.all(2.0),
+                  height: MediaQuery.of(context).size.height * 0.15,
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                       // crossAxisAlignment: ,
                       children: [
-                        FlatButton(
+                        TextButton(
                           onPressed: () => Navigator.of(context)
                               .pushNamed(FeedsScreen.routeName),
                           child: Text(

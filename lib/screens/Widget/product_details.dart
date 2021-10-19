@@ -4,16 +4,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_app/consts/theme_data.dart';
-// import 'package:flutter_app/main.dart';
+import 'package:flutter_app/consts/_list/Model/product_list_model.dart';
+
+import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
+// import 'package:flutter_app/consts/_list/Model/product_list_model.dart';
+import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
-import 'package:flutter_app/screens/card.dart';
-import 'package:flutter_app/screens/wishlist.dart';
+import 'package:fluttericon/elusive_icons.dart';
+import 'package:fluttericon/zocial_icons.dart';
 import 'package:provider/provider.dart';
 
-// ignore: unused_import
-
-import 'package:list_tile_switch/list_tile_switch.dart';
+import 'Feeds_products.dart';
 
 // ignore: camel_case_types
 class productDetails extends StatefulWidget {
@@ -27,14 +28,26 @@ class ProductDetailsState extends State<productDetails> {
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
+
+    //final productget = Provider.of<ProductModel>(context);
+    var productId = ModalRoute.of(context)!.settings.arguments.toString();
+
+    // CategoryViewModel categoryViewModel =
+    //     Provider.of<CategoryViewModel>(context);
+    ProductViewModel productViewModel = Provider.of<ProductViewModel>(context);
+
+    final product = productViewModel.findById(productId);
+    final productListByCategory =
+        productViewModel.findByCategory(product.category.id);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chi Tiết Sản Phẩm'),
+        title: Text(product.category.name),
       ),
       body: Stack(
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.all(15),
+            margin: const EdgeInsets.all(0),
             // color: Colors.black,
             child: Container(
               padding: const EdgeInsets.all(16),
@@ -120,17 +133,18 @@ class ProductDetailsState extends State<productDetails> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               child: Text(
-                                'title',
-                                maxLines: 2,
-                                style: TextStyle(
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.w600),
-                              ),
+                                  // 'title',
+                                  product.name,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).splashColor)),
                             ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text('data')
+                            // SizedBox(
+                            //   height: 8,
+                            // ),
+                            // Text('data')
                           ],
                         ),
                       )
@@ -157,13 +171,15 @@ class ProductDetailsState extends State<productDetails> {
                             Container(
                               width: MediaQuery.of(context).size.width,
                               child: Text(
-                                'description',
+                                // productget.description,
+                                'Miêu tả: ' + product.description,
                                 maxLines: 2,
                                 style: TextStyle(
-                                    fontSize: 28.0,
+                                    fontSize: 15.0,
                                     fontWeight: FontWeight.w600,
                                     color:
-                                        Theme.of(context).textSelectionColor),
+                                        // ignore: deprecated_member_use
+                                        Theme.of(context).splashColor),
                               ),
                             ),
                             const SizedBox(
@@ -178,22 +194,71 @@ class ProductDetailsState extends State<productDetails> {
                                 height: 1,
                               ),
                             ),
-                            details(
-                                themeState.darkTheme, 'Brand: ', 'BrandName'),
-                            details(themeState.darkTheme, 'Quantily: ', '12'),
-                            details(themeState.darkTheme, 'Category: ', 'Name'),
-                            details(themeState.darkTheme, 'Popularity: ',
-                                'Popularity'),
+                            details(themeState.darkTheme, 'Số Lượng: ',
+                                product.countInStock.toString()),
+                            details(themeState.darkTheme, 'Category: ',
+                                product.category.name),
+                            Padding(padding: EdgeInsets.all(5.0)),
                           ],
                         ),
                       )
                     ],
                   ),
                 ),
+                Divider(
+                  thickness: 1,
+                  color: Colors.grey[700],
+                  height: 1,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Text(
+                    'Sản phẩm liên quan',
+                    style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w900,
+                        color: Theme.of(context).splashColor),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 30),
+                  width: double.infinity,
+                  height: 310,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: productListByCategory.length < 7
+                        ? productListByCategory.length
+                        : 7,
+                    itemBuilder: (BuildContext ctx, int idx) {
+                      // if (productListByCategory[idx].name == product.name) {
+                      //   return productListByCategory.sublist(1).toList();
+                      // }
+                      return ChangeNotifierProvider.value(
+                        value: productListByCategory[idx],
+                        child: FeedProducts(),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Elusive.heart),
+                tooltip: 'Yêu thích',
+              ),
+              Spacer(),
+              IconButton(onPressed: () {}, icon: Icon(Zocial.cart)),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -207,7 +272,7 @@ class ProductDetailsState extends State<productDetails> {
             title,
             // ignore: deprecated_member_use
             style: TextStyle(
-              color: Theme.of(context).textSelectionColor,
+              color: Theme.of(context).splashColor,
               fontWeight: FontWeight.w600,
               fontSize: 16,
             ),
@@ -216,7 +281,7 @@ class ProductDetailsState extends State<productDetails> {
             inf,
             // ignore: deprecated_member_use
             style: TextStyle(
-              color: Theme.of(context).textSelectionColor,
+              color: Theme.of(context).splashColor,
               fontWeight: FontWeight.w600,
               fontSize: 16,
             ),

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_bar.dart';
+import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/consts/theme_data.dart';
 
 import 'package:flutter_app/provider/dark_theme.dart';
+import 'package:flutter_app/screens/Widget/Categori_detail.dart';
 import 'package:flutter_app/screens/card.dart';
 import 'package:flutter_app/screens/feeds.dart';
 import 'package:flutter_app/screens/home.dart';
@@ -26,6 +29,12 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) {
             return themeChangeProvider;
+          }),
+          ChangeNotifierProvider(create: (_) {
+            return ProductViewModel();
+          }),
+          ChangeNotifierProvider(create: (_) {
+            return CategoryViewModel();
           })
         ],
         child:
@@ -41,6 +50,7 @@ class MyApp extends StatelessWidget {
               FeedsScreen.routeName: (ctx) => FeedsScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),
               productDetails.routeName: (ctx) => productDetails(),
+              CategoryDetail.routeName: (ctx) => CategoryDetail(),
             },
           );
         }));
