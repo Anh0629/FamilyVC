@@ -37,6 +37,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
       ),
       body: productListByCategory.isEmpty
           ? Container(
+              color: Theme.of(context).backgroundColor,
               padding: EdgeInsets.only(top: 5.0),
               child: Center(
                 child: Column(
@@ -60,6 +61,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
               ),
             )
           : Container(
+              color: Theme.of(context).backgroundColor,
               padding: EdgeInsets.only(top: 8),
               child: GridView.count(
                 crossAxisCount: 2,

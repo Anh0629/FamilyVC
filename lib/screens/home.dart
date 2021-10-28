@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
+import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/category.dart';
 import 'package:flutter_app/screens/Widget/product_home_.dart';
 import 'package:flutter_app/screens/feeds.dart';
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // ignore: override_on_non_overriding_member
   List _carouselImage = [
-    'assets/images/healthyfood.png',
+    'assets/images/giphy.gif',
     'assets/images/healthyfood.png',
     'assets/images/healthyfood.png',
     'assets/images/healthyfood.png',
@@ -48,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
+
     CategoryViewModel categoryViewModel =
         Provider.of<CategoryViewModel>(context);
 
@@ -60,10 +63,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
         title: Text("Trang Chủ "),
+
         // leading: BackdropToggleButton(
         //   icon: AnimatedIcons.home_menu,
       ),
       body: Container(
+        color: Theme.of(context).backgroundColor,
         child: CustomScrollView(
           slivers: [
             SliverList(
@@ -77,8 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     animationCurve: Curves.fastOutSlowIn,
                     animationDuration: Duration(milliseconds: 2000),
                     dotSize: 5.0,
-                    dotIncreasedColor: Colors.indigo[500],
-                    dotBgColor: Colors.indigo.withOpacity(0.2),
+                    dotIncreasedColor: Theme.of(context).primaryColorLight,
+                    dotBgColor:
+                        Theme.of(context).primaryColorLight.withOpacity(0.2),
                     dotPosition: DotPosition.bottomCenter,
                     dotVerticalPadding: 10.0,
                     showIndicator: true,
@@ -96,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.05,
-                  color: Theme.of(context).appBarTheme.backgroundColor!,
+                  color: Theme.of(context).primaryColorLight,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Row(children: [
@@ -104,9 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           'Danh mục',
                           style: TextStyle(
-                              color:
-                                  // ignore: deprecated_member_use
-                                  Theme.of(context).textSelectionColor,
+                              color: Theme.of(context).backgroundColor,
+                              // ignore: deprecated_member_use
+
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -121,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 15,
                             color:
                                 // ignore: deprecated_member_use
-                                Theme.of(context).textSelectionColor,
+                                Theme.of(context).backgroundColor,
                           ),
                         ),
                       ),
@@ -130,17 +136,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   child: Container(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(4.0),
                     height: 150,
                     width: double.infinity,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        print(
-                            "CategoryModel categoryModel categoryViewModel.categoryList[index];");
                         CategoryModel categoryModel =
                             categoryViewModel.categoryList[index];
-                        print(categoryModel.toString());
                         return ChangeNotifierProvider.value(
                           value: categoryModel,
                           child: CategoryWidget(),
@@ -152,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.05,
-                  color: Theme.of(context).appBarTheme.backgroundColor!,
+                  color: Theme.of(context).primaryColorLight,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8),
                     child: Row(children: [
@@ -162,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                               color:
                                   // ignore: deprecated_member_use
-                                  Theme.of(context).textSelectionColor,
+                                  Theme.of(context).backgroundColor,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -177,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 15,
                             color:
                                 // ignore: deprecated_member_use
-                                Theme.of(context).textSelectionColor,
+                                Theme.of(context).backgroundColor,
                           ),
                         ),
                       ),
@@ -209,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Container(
-                  color: Theme.of(context).appBarTheme.backgroundColor!,
+                  color: Theme.of(context).primaryColorLight,
                   height: MediaQuery.of(context).size.height * 0.05,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -219,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                             color:
                                 // ignore: deprecated_member_use
-                                Theme.of(context).textSelectionColor,
+                                Theme.of(context).backgroundColor,
                             fontWeight: FontWeight.bold),
                       ),
 
@@ -234,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 15,
                             color:
                                 // ignore: deprecated_member_use
-                                Theme.of(context).textSelectionColor,
+                                Theme.of(context).backgroundColor,
                           ),
                         ),
                       ),
@@ -258,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.05,
-                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  color: Theme.of(context).primaryColorLight,
                   child: Container(
                       margin: EdgeInsets.only(left: 8),
                       child: Row(
@@ -267,28 +270,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Gian Hàng',
                             style: TextStyle(
                                 // ignore: deprecated_member_use
-                                color: Theme.of(context).textSelectionColor,
+                                color: Theme.of(context).backgroundColor,
                                 fontWeight: FontWeight.bold),
                           ),
                           Spacer(),
-                          // ignore: deprecated_member_use
-
-                          // ignore: deprecated_member_use
-                          // FlatButton(
-                          //   onPressed: () => Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: (context) => HomeScreen())),
-                          //   child: Text(
-                          //     'Quay lại Home',
-                          //     style: TextStyle(
-                          //         fontWeight: FontWeight.w800,
-                          //         fontSize: 15,
-                          //         color: Colors.indigo[500]),
-                          //   ),
-                          // ),
-
-                          // Spacer(),
                         ],
                       )),
                 ),
@@ -297,198 +282,43 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(5.0),
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: GridView.count(
-                        shrinkWrap: true,
-                        crossAxisCount: 3,
-                        childAspectRatio: 200 / 280,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                        children: List.generate(
-                            productsViewModel.productList.length, (index) {
+                      shrinkWrap: true,
+                      crossAxisCount: 3,
+                      childAspectRatio: 200 / 280,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8,
+                      children: List.generate(
+                        productsViewModel.productList.length,
+                        (index) {
                           return ChangeNotifierProvider.value(
                             value: productsViewModel.productList[index],
                             child: FeedProductsHome(),
                           );
-                        })),
+                        },
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(2.0),
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        // crossAxisAlignment: ,
+                        children: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(FeedsScreen.routeName),
+                            child: Text(
+                              'Xem thêm',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 15,
+                                  color: Colors.indigo[500]),
+                            ),
+                          ),
+                        ]),
                   ),
                 ]),
-                Container(
-                  padding: const EdgeInsets.all(2.0),
-                  height: MediaQuery.of(context).size.height * 0.15,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      // crossAxisAlignment: ,
-                      children: [
-                        TextButton(
-                          onPressed: () => Navigator.of(context)
-                              .pushNamed(FeedsScreen.routeName),
-                          child: Text(
-                            'Xem thêm',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontSize: 15,
-                                color: Colors.indigo[500]),
-                          ),
-                        ),
-                      ]),
-                ),
               ]),
-              // Column(
-              //   children: [
-              //     Container(
-              //       height: 150,
-              //       width: MediaQuery.of(context).size.width,
-              //       child: Carousel(
-              //         boxFit: BoxFit.fitHeight,
-              //         autoplay: true,
-              //         animationCurve: Curves.fastOutSlowIn,
-              //         animationDuration: Duration(milliseconds: 2000),
-              //         dotSize: 5.0,
-              //         dotIncreasedColor: Colors.indigo[500],
-              //         dotBgColor: Colors.indigo.withOpacity(0.2),
-              //         dotPosition: DotPosition.bottomCenter,
-              //         dotVerticalPadding: 10.0,
-              //         showIndicator: true,
-              //         indicatorBgPadding: 7.0,
-              //         images: [
-              //           ExactAssetImage(_carouselImage[0]),
-              //           ExactAssetImage(_carouselImage[1]),
-              //           ExactAssetImage(_carouselImage[2]),
-              //           ExactAssetImage(_carouselImage[3]),
-              //         ],
-              //       ),
-              //     ),
-              //     Container(
-              //       height: MediaQuery.of(context).size.height * 0.03,
-              //       color: Colors.pink[100],
-              //       child: Padding(
-              //         padding: const EdgeInsets.only(left: 8),
-              //         child: Row(children: [
-              //           Container(
-              //             child: Text(
-              //               'Gian Hang',
-              //               style: TextStyle(
-              //                   color: Colors.indigo[500],
-              //                   fontWeight: FontWeight.bold),
-              //             ),
-              //           ),
-              //           Spacer(),
-              //           // ignore: deprecated_member_use
-              //           FlatButton(
-              //             onPressed: () {},
-              //             child: Text(
-              //               'View All',
-              //               style: TextStyle(
-              //                   fontWeight: FontWeight.w800,
-              //                   fontSize: 15,
-              //                   color: Colors.indigo[500]),
-              //             ),
-              //           ),
-              //         ]),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Container(
-              //         // color: Colors.black,
-              //         height: MediaQuery.of(context).size.height * 0.2,
-              //         width: MediaQuery.of(context).size.width,
-
-              //         child: Stack(children: [
-              //           Swiper(
-              //             itemCount: _brandImage.length,
-              //             autoplay: true,
-              //             onTap: (index) {},
-              //             itemBuilder: (BuildContext ctx, int index) {
-              //               return ClipRRect(
-              //                 borderRadius: BorderRadius.circular(10),
-              //                 child: Image.asset(
-              //                   _brandImage[index],
-              //                 ),
-              //               );
-              //             },
-              //           ),
-              //         ]),
-              //       ),
-              //     ),
-              //     Container(
-              //       color: Colors.pink[100],
-              //       height: MediaQuery.of(context).size.height * 0.04,
-              //       child: Padding(
-              //         padding: const EdgeInsets.only(left: 8.0),
-              //         child: Row(children: [
-              //           Text(
-              //             'Mặt Hàng Nổi Bật',
-              //             style: TextStyle(
-              //                 color: Colors.indigo[500],
-              //                 fontWeight: FontWeight.bold),
-              //           ),
-
-              //           Spacer(),
-              //           // ignore: deprecated_member_use
-              //           FlatButton(
-              //             onPressed: () {},
-              //             child: Text(
-              //               'Tất Cả',
-              //               style: TextStyle(
-              //                   fontWeight: FontWeight.w800,
-              //                   fontSize: 15,
-              //                   color: Colors.indigo[500]),
-              //             ),
-              //           ),
-              //         ]),
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Container(
-              //         width: double.infinity,
-              //         height: 160,
-              //         margin: EdgeInsets.symmetric(horizontal: 3),
-              //         child: ListView.builder(
-              //           scrollDirection: Axis.horizontal,
-              //           itemCount: 10,
-              //           itemBuilder: (BuildContext context, int index) {
-              //             return popularProduct();
-              //           },
-              //         ),
-              //       ),
-              //     ),
-              //     Container(
-              //       color: Colors.pink[100],
-              //       child: Padding(
-              //         padding: const EdgeInsets.all(15.0),
-              //         child: Container(
-              //             child: Row(
-              //           children: [
-              //             Text(
-              //               'Gian Hàng',
-              //               style: TextStyle(
-              //                   color: Colors.indigo[500],
-              //                   fontWeight: FontWeight.bold),
-              //             ),
-              //             // Spacer(),
-              //           ],
-              //         )),
-              //       ),
-              //     ),
-              //     Column(children: [
-              //       Container(
-              //         height: 500,
-              //         child: GridView.count(
-              //             shrinkWrap: true,
-              //             crossAxisCount: 3,
-              //             childAspectRatio: 200 / 280,
-              //             crossAxisSpacing: 8,
-              //             mainAxisSpacing: 8,
-              //             children: List.generate(30, (index) {
-              //               return shopHome();
-              //             })),
-              //       ),
-              //     ]),
-              //
-              //       ),
-              //     ),
-              //   ],
-              // ),
             )
           ],
         ),

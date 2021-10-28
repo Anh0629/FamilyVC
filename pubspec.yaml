@@ -37,6 +37,10 @@ dependencies:
   flutter_swiper: ^1.1.6
   http: ^0.13.3
   flutter_icons: ^1.1.0
+  cached_network_image: ^3.1.0
+  shared_preferences: ^2.0.7
+  wave: ^0.2.0
+  firebase_auth_oauth: ^1.1.0
   
 
 dev_dependencies:
@@ -58,6 +62,8 @@ flutter:
   assets:
     - assets/images/healthyfood.png
     - assets/images/12378.png
+    - assets/images/giphy.gif
+    - assets/images/giphy3.gif
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

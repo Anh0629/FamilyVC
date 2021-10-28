@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/card.dart';
 import 'package:flutter_app/screens/feeds.dart';
 import 'package:flutter_app/screens/home.dart';
+// ignore: unused_import
 import 'package:flutter_app/screens/search.dart';
 import 'package:flutter_app/screens/user.dart';
+
+import 'screens/Widget/Cart/cart.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static const routeName = '/BottomBarScreen';
@@ -25,9 +27,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         'page': FeedsScreen(),
       },
       {
-        'page': SearchScreen(),
-      },
-      {
         'page': CartScreen(),
       },
       {
@@ -46,22 +45,18 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(pages[selectedIndex]['title']),
-      //   backgroundColor: Colors.indigo[400],
-      // ),
       body: pages[selectedIndex]['page'],
       bottomNavigationBar: BottomAppBar(
-        notchMargin: 5,
+        color: Theme.of(context).backgroundColor,
+        notchMargin: 4,
         clipBehavior: Clip.antiAlias,
         shape: CircularNotchedRectangle(),
         child: BottomNavigationBar(
           onTap: selectedPage,
-          backgroundColor: Theme.of(context).bottomAppBarColor,
+          backgroundColor: Theme.of(context).primaryColorLight,
           // ignore: deprecated_member_use
-          unselectedItemColor: Theme.of(context).bottomAppBarColor,
-          selectedItemColor: Colors.indigo[500],
+          unselectedItemColor: Theme.of(context).primaryColorLight,
+          selectedItemColor: Theme.of(context).buttonColor,
           currentIndex: selectedIndex,
           items: [
             BottomNavigationBarItem(
@@ -71,8 +66,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 tooltip: 'Feeds',
                 label: 'Sản Phẩm'),
             BottomNavigationBarItem(
-                activeIcon: null, icon: Icon(null), tooltip: '', label: ''),
-            BottomNavigationBarItem(
                 icon: Icon(Icons.shopping_basket),
                 tooltip: 'Card',
                 label: 'Thanh Toán'),
@@ -80,19 +73,6 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                 icon: Icon(Icons.person), tooltip: 'User', label: 'Người Dùng'),
           ],
         ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.pink[200],
-        tooltip: 'Tìm Kiếm',
-        elevation: 5,
-        child: (Icon(Icons.search)),
-        onPressed: () {
-          setState(() {
-            selectedIndex = 2;
-          });
-        },
       ),
     );
   }

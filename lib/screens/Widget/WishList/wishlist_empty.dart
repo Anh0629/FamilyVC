@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/feeds.dart';
 
-class wishListEmpty extends StatelessWidget {
+class WishListEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink[200],
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Center(
         child: Container(
-          color: Colors.pink[50],
+          color: Theme.of(context).backgroundColor,
           child: Column(children: [
             Container(
               height: 200,
@@ -27,7 +28,7 @@ class wishListEmpty extends StatelessWidget {
               child: Text(
                 'Giỏ hàng của bạn đang không có gì nè !!!',
                 style: TextStyle(
-                    color: Colors.indigo[400],
+                    color: Theme.of(context).buttonColor,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.italic),
@@ -36,7 +37,7 @@ class wishListEmpty extends StatelessWidget {
             Text(
               'Quay lại mua hàng tiếp nhé ',
               style: TextStyle(
-                  color: Colors.indigo[400],
+                  color: Theme.of(context).buttonColor,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   fontStyle: FontStyle.italic),
@@ -46,12 +47,13 @@ class wishListEmpty extends StatelessWidget {
               padding: const EdgeInsets.all(35.0),
               // ignore: deprecated_member_use
               child: RaisedButton(
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(FeedsScreen.routeName),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                   side: BorderSide(color: Colors.pink.shade100),
                 ),
-                color: Colors.pink[200],
+                color: Theme.of(context).buttonColor,
                 child: SizedBox(
                   child: Center(
                     child: Icon(

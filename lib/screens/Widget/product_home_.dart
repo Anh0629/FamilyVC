@@ -25,12 +25,15 @@ class _FeedProductsHomeState extends State<FeedProductsHome> {
         width: 80,
         height: 150,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Colors.white),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+                width: 2, color: Theme.of(context).primaryColorLight)),
         child: Column(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(2),
               child: Container(
+                margin: const EdgeInsets.all(5.0),
                 width: double.infinity,
                 constraints: BoxConstraints(
                     minHeight: 50,
@@ -58,7 +61,7 @@ class _FeedProductsHomeState extends State<FeedProductsHome> {
                       maxLines: 2,
                       style: TextStyle(
                           fontSize: 14,
-                          color: Colors.black,
+                          color: Theme.of(context).textSelectionColor,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -71,7 +74,8 @@ class _FeedProductsHomeState extends State<FeedProductsHome> {
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 10,
-                            color: Colors.grey[700],
+                            // ignore: deprecated_member_use
+                            color: Theme.of(context).textSelectionColor,
                             fontWeight: FontWeight.w600),
                       ),
                       Material(

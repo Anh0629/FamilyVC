@@ -4,16 +4,18 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_app/consts/theme_data.dart';
 //import 'package:flutter_app/consts/theme_data.dart';
 // import 'package:flutter_app/main.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
-import 'package:flutter_app/screens/card.dart';
-import 'package:flutter_app/screens/wishlist.dart';
+import 'package:flutter_app/screens/Widget/WishList/wishlist.dart';
 import 'package:provider/provider.dart';
 // ignore: unused_import
 import '../consts/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+
+import 'Widget/Cart/cart.dart';
 
 class UserScreen extends StatefulWidget {
   @override
@@ -50,6 +52,7 @@ class _UserScreenState extends State<UserScreen> {
               controller: scrollController,
               slivers: <Widget>[
                 SliverAppBar(
+                  backgroundColor: Theme.of(context).backgroundColor,
                   automaticallyImplyLeading: false,
                   elevation: 4,
                   expandedHeight: 200,
@@ -113,7 +116,7 @@ class _UserScreenState extends State<UserScreen> {
                           ],
                         ),
                         background: Container(
-                          color: Colors.indigo[100],
+                          color: Theme.of(context).backgroundColor,
                           child: Image(
                             image: AssetImage('assets/images/healthyfood.png'),
                             fit: BoxFit.fitHeight,
@@ -124,117 +127,129 @@ class _UserScreenState extends State<UserScreen> {
                   }),
                 ),
                 SliverToBoxAdapter(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment
-                        .center, //ăn chỉnh các widget con của nó theo chiều dọc
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: userTitle('Ví Người Dùng'),
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.indigo,
-                        indent: 20,
-                        endIndent: 235,
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: Colors.pink[200],
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(WishlistScreen.routeName),
-                          child: ListTile(
-                            title: Text('Sản phẩm đã thích'),
-                            trailing: Icon(Icons.chevron_right_rounded),
-                            leading: Icon(Feather.heart),
+                  child: Container(
+                    color: Theme.of(context).backgroundColor,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment
+                          .center, //ăn chỉnh các widget con của nó theo chiều dọc
+                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: userTitle(
+                            'Giỏ Hàng',
                           ),
                         ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: Colors.pink[200],
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(CartScreen.routeName),
-                          child: ListTile(
-                            title: Text('Cart'),
-                            trailing: Icon(Icons.chevron_right_rounded),
-                            leading: Icon(Feather.shopping_cart),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Theme.of(context).primaryColorLight,
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(WishlistScreen.routeName),
+                            child: ListTile(
+                              title: Text('Yêu Thích',
+                                  style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900)),
+                              trailing: Icon(Icons.chevron_right_rounded),
+                              leading: Icon(
+                                Entypo.heart,
+                                color: Theme.of(context).primaryColorLight,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: Colors.pink[200],
-                          onTap: () => Navigator.of(context),
-                          child: ListTile(
-                            title: Text('Ví 3'),
-                            trailing: Icon(Icons.chevron_right_rounded),
-                            // leading: Icon(),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Theme.of(context).primaryColorLight,
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(CartScreen.routeName),
+                            child: ListTile(
+                              title: Text(
+                                'Giỏ Hàng',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorLight,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w900),
+                              ),
+                              trailing: Icon(Icons.chevron_right_rounded),
+                              leading: Icon(Entypo.shopping_cart,
+                                  color: Theme.of(context).primaryColorLight),
+                            ),
                           ),
                         ),
-                      ),
-                      Divider(
-                        //giai phan cach
-                        thickness: 2,
-                        color: Colors.indigo,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: userTitle('Thông Tin Người Dùng'),
-                      ),
-                      Divider(
-                        indent: 20,
-                        endIndent: 165,
-                        thickness: 1,
-                        color: Colors.indigo,
-                      ),
-                      userListTitle('Email', 'sub', 0, context),
-                      userListTitle('Số Điện Thoại', 'sub', 1, context),
-                      userListTitle('Đang Giao Hàng', 'sub', 2, context),
-                      userListTitle('Tình Trạng Đơn Hàng', 'sub', 3, context),
-                      Divider(
-                        thickness: 2,
-                        color: Colors.indigo,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: userTitle('Cài Đặt'),
-                      ),
-                      Divider(
-                        indent: 20,
-                        endIndent: 300,
-                        thickness: 1,
-                        color: Colors.indigo,
-                      ),
-                      ListTileSwitch(
-                        value: themeChange.darkTheme,
-                        leading: Icon(
-                          themeChange.darkTheme
-                              ? Icons.dark_mode_rounded
-                              : Icons.light_mode_rounded,
-                          color: Theme.of(context).splashColor,
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Theme.of(context).primaryColorLight,
+                            onTap: () => Navigator.of(context),
+                            child: ListTile(
+                              title: Text('Thêm',
+                                  style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900)),
+                              trailing: Icon(Icons.chevron_right_rounded),
+                              // leading: Icon(),
+                            ),
+                          ),
                         ),
-                        onChanged: (value) {
-                          setState(() {
-                            themeChange.darkTheme = value;
-                          });
-                        },
-                        visualDensity: VisualDensity.comfortable,
-                        switchType: SwitchType.cupertino,
-                        switchActiveColor: Theme.of(context).splashColor,
-                        title: Text(
-                          themeChange.darkTheme ? 'Dark Theme' : 'Light Theme',
-                          style: Theme.of(context).textTheme.bodyText1,
+                        Divider(
+                          //giai phan cach
+                          thickness: 2,
+                          color: Theme.of(context).primaryColorLight,
                         ),
-                      ),
-                      userListTitle('Logout', 'subTitle', 4, context),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: userTitle('Thông Tin Người Dùng'),
+                        ),
+                        userListTitle('Email', 'sub', 0, context),
+                        userListTitle('Số Điện Thoại', 'sub', 1, context),
+                        userListTitle('Đang Giao Hàng', 'sub', 2, context),
+                        userListTitle('Tình Trạng Đơn Hàng', 'sub', 3, context),
+                        Divider(
+                          thickness: 2,
+                          color: Theme.of(context).primaryColorLight,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: userTitle('Cài Đặt'),
+                        ),
+                        ListTileSwitch(
+                          value: themeChange.darkTheme,
+                          leading: Icon(
+                            themeChange.darkTheme
+                                ? Icons.dark_mode_rounded
+                                : Icons.light_mode_rounded,
+                            color: Theme.of(context).primaryColorLight,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              themeChange.darkTheme = value;
+                            });
+                          },
+                          visualDensity: VisualDensity.comfortable,
+                          switchType: SwitchType.cupertino,
+                          switchActiveColor:
+                              Theme.of(context).primaryColorLight,
+                          title: Text(
+                            themeChange.darkTheme
+                                ? 'Dark Theme'
+                                : 'Light Theme',
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorLight),
+                          ),
+                        ),
+                        userListTitle('Logout', 'subTitle', 4, context),
+                      ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             buildFab()
@@ -278,7 +293,7 @@ class _UserScreenState extends State<UserScreen> {
           heroTag: "btn1",
           onPressed: () {},
           child: Icon(Icons.camera_alt_outlined),
-          backgroundColor: Colors.indigo[400],
+          backgroundColor: Theme.of(context).primaryColorLight,
         ),
       ),
     );
@@ -297,18 +312,18 @@ class _UserScreenState extends State<UserScreen> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        splashColor: Theme.of(context).splashColor,
+        splashColor: Theme.of(context).primaryColorLight,
         child: ListTile(
           onTap: () {},
           title: Text(title,
-              style: TextStyle(color: Theme.of(context).splashColor)),
+              style: TextStyle(color: Theme.of(context).primaryColorLight)),
           subtitle: Text(
             subTitle,
-            style: TextStyle(color: Theme.of(context).splashColor),
+            style: TextStyle(color: Theme.of(context).primaryColorLight),
           ),
           leading: Icon(
             userTitleIcons[index],
-            color: Theme.of(context).splashColor,
+            color: Theme.of(context).primaryColorLight,
           ),
         ),
       ),
@@ -320,8 +335,8 @@ class _UserScreenState extends State<UserScreen> {
       title,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 20,
-        color: Colors.indigo[500],
+        fontSize: 24,
+        color: Theme.of(context).buttonColor,
         height: 2,
       ),
     );

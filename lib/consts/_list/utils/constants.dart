@@ -1,5 +1,5 @@
-const String PRODUCT_URL = 'http://192.168.0.100:4000/api/products';
-const String CATEGORY_URL = 'http://192.168.0.100:4000/api/category';
+const String PRODUCT_URL = 'http://localhost:4000/api/products';
+const String CATEGORY_URL = 'http://localhost:4000/api/category';
 
 // Errors
 const PRODUCT_INVALID_RESPONSE = 100;

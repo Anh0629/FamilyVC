@@ -9,7 +9,7 @@ class CategoryService {
   static Future<Object> fetchCategory() async {
     try {
       var url = Uri.parse(CATEGORY_URL);
-      var urlTest = Uri.parse('https://reactnative.dev/movies.json');
+      // var urlTest = Uri.parse('https://reactnative.dev/movies.json');
       print('GET ' + CATEGORY_URL);
       var response = await http.get(url).timeout(Duration(seconds: 10));
 

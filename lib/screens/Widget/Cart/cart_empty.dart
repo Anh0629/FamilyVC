@@ -5,10 +5,15 @@ class CartEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(
+            ' Giỏ Hàng của bạn',
+            // style: TextStyle(color: Colors.white),
+          ),
+        ),
         body: Center(
           child: Container(
-            color: Colors.pink[50],
+            color: Theme.of(context).backgroundColor,
             child: Column(children: [
               Container(
                 height: 200,
@@ -26,7 +31,7 @@ class CartEmpty extends StatelessWidget {
                 child: Text(
                   'Giỏ hàng của bạn đang không có gì nè !!!',
                   style: TextStyle(
-                      color: Colors.indigo[400],
+                      color: Theme.of(context).buttonColor,
                       fontSize: 20,
                       fontWeight: FontWeight.w700,
                       fontStyle: FontStyle.italic),
@@ -35,7 +40,7 @@ class CartEmpty extends StatelessWidget {
               Text(
                 'Quay lại mua hàng tiếp nhé ',
                 style: TextStyle(
-                    color: Colors.indigo[400],
+                    color: Theme.of(context).buttonColor,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     fontStyle: FontStyle.italic),
@@ -51,7 +56,7 @@ class CartEmpty extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     side: BorderSide(color: Colors.pink.shade100),
                   ),
-                  color: Colors.pink[200],
+                  color: Theme.of(context).buttonColor,
                   child: SizedBox(
                     child: Center(
                       child: Icon(

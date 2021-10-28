@@ -16,18 +16,17 @@ class CategoryWidget extends StatelessWidget {
         arguments: categoryAttributes.id,
       ),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 4.0),
+        margin: EdgeInsets.symmetric(horizontal: 2.0),
         width: 100,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: Theme.of(context).cardColor,
+            color: Theme.of(context).primaryColorLight,
           ),
           // border: Border.all(style: ) ),
           color: Theme.of(context).backgroundColor,
         ),
         child: Container(
-          margin: EdgeInsets.all(3.0),
           padding: EdgeInsets.all(5.0),
           child: Column(
             children: [
@@ -64,7 +63,8 @@ class CategoryWidget extends StatelessWidget {
                           maxLines: 2,
                           style: TextStyle(
                               fontSize: 14,
-                              color: Colors.indigo[400],
+                              // ignore: deprecated_member_use
+                              color: Theme.of(context).textSelectionColor,
                               fontWeight: FontWeight.w900),
                         ),
                       ),

@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_bar.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
 import 'package:flutter_app/consts/theme_data.dart';
 
 import 'package:flutter_app/provider/dark_theme.dart';
+import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/screens/Widget/Categori_detail.dart';
-import 'package:flutter_app/screens/card.dart';
+import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/feeds.dart';
 import 'package:flutter_app/screens/home.dart';
-import 'package:flutter_app/screens/wishlist.dart';
+import 'package:flutter_app/screens/Widget/WishList/wishlist.dart';
+import 'package:flutter_app/screens/landing_page.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/Widget/Cart/cart.dart';
 import 'screens/Widget/product_details.dart';
 
 void main() {
@@ -35,7 +39,13 @@ class MyApp extends StatelessWidget {
           }),
           ChangeNotifierProvider(create: (_) {
             return CategoryViewModel();
-          })
+          }),
+          ChangeNotifierProvider(create: (_) {
+            return CartProvider();
+          }),
+          ChangeNotifierProvider(create: (_) {
+            return WishProvider();
+          }),
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
@@ -43,7 +53,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'App cua Thai Anh',
             theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-            home: BottomBarScreen(),
+            home: LoginScreen(),
             routes: {
               WishlistScreen.routeName: (ctx) => WishlistScreen(),
               CartScreen.routeName: (ctx) => CartScreen(),
@@ -51,6 +61,7 @@ class MyApp extends StatelessWidget {
               HomeScreen.routeName: (ctx) => HomeScreen(),
               productDetails.routeName: (ctx) => productDetails(),
               CategoryDetail.routeName: (ctx) => CategoryDetail(),
+              LoginScreen.routeName: (ctx) => LoginScreen()
             },
           );
         }));

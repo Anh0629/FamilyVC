@@ -12,9 +12,10 @@ class FeedsScreen extends StatelessWidget {
     ProductViewModel productsViewModel = Provider.of<ProductViewModel>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        title: Text('Mua Sắm nào!'),
       ),
       body: Container(
+        color: Theme.of(context).backgroundColor,
         padding: EdgeInsets.only(top: 5.0),
         child: GridView.count(
           crossAxisCount: 2,

@@ -60,8 +60,9 @@ class ProductViewModel with ChangeNotifier {
         .toList();
   }
 
-  // ProductModel findByProduct(String productById) {
-  //   return productList.firstWhere((element) => element.id == productById , );
+  List<ProductModel> removeItemExisting(String productId) {
+    return productList.where((element) => element.id != productId).toList();
+  }
 
-  // }
+  
 }
