@@ -48,6 +48,7 @@ class ProductDetailsState extends State<productDetails> {
     final product = productViewModel.findById(productId);
     final productListByCategory =
         productViewModel.findByCategory(product.category.id);
+
     final List<ProductModel> productFilter = productListByCategory
         .where((element) => element.id != productId)
         .toList();
@@ -120,7 +121,6 @@ class ProductDetailsState extends State<productDetails> {
                       ],
                     ),
                   ),
-
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: Divider(
@@ -164,7 +164,6 @@ class ProductDetailsState extends State<productDetails> {
                     color: Colors.grey[700],
                     height: 1,
                   ),
-
                   Container(
                     color: Theme.of(context).backgroundColor,
                     child: Column(
@@ -217,16 +216,6 @@ class ProductDetailsState extends State<productDetails> {
                     color: Colors.grey[700],
                     height: 5,
                   ),
-                  // Container(
-                  //   width: MediaQuery.of(context).size.width,
-                  //   child: Text(
-                  //     'Sản phẩm liên quan',
-                  //     style: TextStyle(
-                  //         fontSize: 15.0,
-                  //         fontWeight: FontWeight.w900,
-                  //         color: Theme.of(context).splashColor),
-                  //   ),
-                  // ),
                   Container(
                     color: Theme.of(context).primaryColorLight,
                     height: MediaQuery.of(context).size.height * 0.05,

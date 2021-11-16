@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/consts/_list/Model/cart_model.dart';
 import 'package:flutter_app/consts/_list/utils/global_method.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
-import 'package:flutter_app/screens/Widget/WishList/wishlist_full.dart';
+import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/order_view_model.dart';
+//'package:flutter_app/consts/_list/view_model/products_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
+
+import 'package:flutter_app/screens/Widget/order/order.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -16,21 +22,27 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   StripeService.init();
-  // }
-
   var response;
-
-  // GlobalMethod globalMethod = GlobalMethod();
+  List list1 = [];
+  Map<String, dynamic>? data = {};
+  var map1;
+  void mapToList() {
+    map1.forEach((key, value) {
+      list1.add({"product": key, "quatity": value});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    GlobalMethods globalMethod = GlobalMethods();
-
     final cartProvider = Provider.of<CartProvider>(context);
+    List<OrderItems> list = [];
+
+    cartProvider.cartItems.entries.forEach((e) =>
+        list.add(OrderItems(e.key, e.value.quantity!.toInt().toString())));
+
+    map1 = Map.fromIterable(list, key: (e) => e.id, value: (e) => e.sl);
+
+    GlobalMethods globalMethod = GlobalMethods();
 
     return cartProvider.getCartItems.isEmpty
         ? Scaffold(
@@ -81,120 +93,142 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   Widget checkoutSection(BuildContext ctx, double subTotal) {
-    // var uuid = Uuid();
+    // List<CartModel> cartList = [];
 
-    // final FirebaseAuth _auth = FirebaseAuth.instance;
-    final cartProvider = Provider.of<CartProvider>(context);
+    final order = Provider.of<OrderViewModel>(context);
+    final user = Provider.of<UserViewModel>(context);
+    final profile = Provider.of<ProfileViewModel>(context);
+    // final cartProvider = Provider.of<CartProvider>(context);
 
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Colors.grey,
-            width: 0.5,
+    return Row(children: [
+      Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.grey,
+              width: 0.5,
+            ),
           ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Container(
-            //   width: 150,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(30),
-            //   ),
-            //   child: Material(
-            //     color: Colors.transparent,
-            //     child: InkWell(
-            //       borderRadius: BorderRadius.circular(30),
-            //       child: Padding(
-            //         padding: const EdgeInsets.all(8.0),
-            //         child: Text(
-            //           'Checkout',
-            //           textAlign: TextAlign.center,
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 18,
-            //             fontWeight: FontWeight.w600,
-            //           ),
-            //         ),
-            //       ),
-            //       onTap: () async {
-            //         double amountInCents = subTotal * 1000;
-            //         int integerAmount = (amountInCents / 10).ceil();
-            //         await payWithCard(amount: integerAmount);
-            //         if (response.success == true) {
-            //           User user = _auth.currentUser;
-            //           final _uid = user.uid;
-            //           cartProvider.getCartItems
-            //               .forEach((key, orderValue) async {
-            //             final orderId = uuid.v4();
-            //             try {
-            //               await FirebaseFirestore.instance
-            //                   .collection('orders')
-            //                   .doc(orderId)
-            //                   .set({
-            //                 'orderId': orderId,
-            //                 'userId': _uid,
-            //                 'productId': orderValue.productId,
-            //                 "title": orderValue.title,
-            //                 'price': orderValue.price * orderValue.quantity,
-            //                 'imageUrl': orderValue.imageUrl,
-            //                 'quantity': orderValue.quantity,
-            //                 'orderDate': Timestamp.now(),
-            //               });
-            //             } catch (e) {}
-            //           });
-            //         } else {
-            //           globalMethod.authErrorHandle(
-            //             'Please enter your true infomation',
-            //             context,
-            //           );
-            //         }
-            //       },
-            //     ),
-            //   ),
-            // ),
-            // Spacer(),
-            Container(
-              // color: Colors.red,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: Text(
-                        'Total Amount: ',
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                // color: Colors.red,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Text(
+                          'Total Amount: ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            // ignore: deprecated_member_use
+                            color: Theme.of(ctx).textSelectionColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        '${subTotal.toStringAsFixed(2)} \$',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          // ignore: deprecated_member_use
-                          color: Theme.of(ctx).textSelectionColor,
+                          color: Colors.blueAccent,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                    ),
-                    Text(
-                      '${subTotal.toStringAsFixed(2)} \$',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    );
+      Container(
+        child: ElevatedButton(
+          style: ButtonStyle(
+            side: MaterialStateProperty.all<BorderSide>(
+              BorderSide(style: BorderStyle.none),
+            ),
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Colors.red,
+            ),
+          ),
+          child: Text(
+            'Thanh toán',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
+          ),
+          onPressed: () => {
+            // mapToList(),
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: Text('Hoá đơn cần thanh toán: '),
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                                'Tổng hoá đơn: ${subTotal.toStringAsFixed(2)} \$ ')
+                          ],
+                        ),
+                      ),
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        child: Text("Thanh Toán1"),
+                        onPressed: () async {
+                          mapToList();
+                          data = {
+                            "orderIterms": list1,
+                            "shippingAddress1": profile
+                                    .profileList.data!.first.address!.street
+                                    .toString() +
+                                profile.profileList.data!.first.address!.city
+                                    .toString() +
+                                profile
+                                    .profileList.data!.first.address!.province
+                                    .toString() +
+                                profile.profileList.data!.first.address!.state
+                                    .toString(),
+                            "shippingAddress2": "dia chi 2",
+                            "city": profile
+                                .profileList.data!.first.address!.city
+                                .toString(),
+                            "zip": "00000000",
+                            "country": profile
+                                .profileList.data!.first.address!.state
+                                .toString(),
+                            "phone1": profile.profileList.data!.first.phone,
+                            "phone2": "phone 2",
+                            "profile":
+                                profile.profileList.data!.first.id.toString(),
+                            "user": user.userModel.data!.id!.toString(),
+                          };
+                          print(data);
+
+                          await order.orderIterm(data);
+                        },
+                      )
+                    ],
+                  );
+                })
+          },
+        ),
+      ),
+    ]);
   }
 
   void showDiaLog(String title, String subtitle, Function fct) {
@@ -227,4 +261,11 @@ class _CartScreenState extends State<CartScreen> {
           );
         });
   }
+}
+
+class OrderItems {
+  final String sl;
+  final String id;
+
+  OrderItems(this.id, this.sl);
 }

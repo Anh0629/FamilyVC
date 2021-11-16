@@ -63,6 +63,4 @@ class ProductViewModel with ChangeNotifier {
   List<ProductModel> removeItemExisting(String productId) {
     return productList.where((element) => element.id != productId).toList();
   }
-
-  
 }

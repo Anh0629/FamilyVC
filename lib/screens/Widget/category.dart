@@ -9,7 +9,7 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryAttributes = Provider.of<CategoryModel>(context);
-    // List<ProductModel> productModel = productsViewModel.productListModel;
+
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
         CategoryDetail.routeName,

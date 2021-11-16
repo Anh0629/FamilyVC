@@ -2,9 +2,14 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
+import 'package:flutter_app/consts/_list/Model/profiles_model.dart';
+import 'package:flutter_app/consts/_list/Model/user_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
+// import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
+import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/category.dart';
 import 'package:flutter_app/screens/Widget/product_home_.dart';
 import 'package:flutter_app/screens/feeds.dart';
@@ -22,8 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 @override
 class _HomeScreenState extends State<HomeScreen> {
-  // var top = 0.0;
-
   @override
   // ignore: override_on_non_overriding_member
 
@@ -49,20 +52,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeChange = Provider.of<DarkThemeProvider>(context);
+    // final themeChange = Provider.of<DarkThemeProvider>(context);
 
     CategoryViewModel categoryViewModel =
         Provider.of<CategoryViewModel>(context);
 
     ProductViewModel productsViewModel = Provider.of<ProductViewModel>(context);
-    // categoryViewModel.setCategoryListModel(categoryListModel)
 
-    // final productAttributes = Provider.of<ProductModel>(context);
-    // var course;
     return new Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
         title: Text("Trang Chủ "),
+        centerTitle: true,
+        leading: InkWell(
+          child: Icon(Icons.arrow_back_ios_new_rounded),
+          onTap: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const LoginPage(),
+              ),
+              (route) => false,
+            );
+          },
+        ),
 
         // leading: BackdropToggleButton(
         //   icon: AnimatedIcons.home_menu,

@@ -68,8 +68,8 @@ class _FeedProductsState extends State<FeedProducts> {
                         maxLines: 2,
                         style: TextStyle(
                             fontSize: 14,
-                            color: Theme.of(context).primaryColorLight,
-                            fontWeight: FontWeight.w600),
+                            color: Colors.indigo,
+                            fontWeight: FontWeight.w900),
                       ),
                     ),
                     Container(

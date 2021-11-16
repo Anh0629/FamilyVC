@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
+import 'package:flutter_app/screens/Widget/auth/sign_up.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class LandingPage extends StatefulWidget {
@@ -108,8 +109,8 @@ class _LandingPageState extends State<LandingPage>
                                 side:
                                     BorderSide(color: Colors.white, width: 3)),
                           )),
-                      onPressed: () => Navigator.of(context)
-                          .pushNamed(LoginScreen.routeName),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(LoginPage.routeName),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -141,7 +142,14 @@ class _LandingPageState extends State<LandingPage>
                               side: BorderSide(color: Colors.white, width: 3),
                             ),
                           )),
-                      onPressed: () {},
+                      onPressed: () => {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterPage()),
+                              (route) => false,
+                            ),
+                          },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

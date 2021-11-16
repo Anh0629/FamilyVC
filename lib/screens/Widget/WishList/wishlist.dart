@@ -13,6 +13,7 @@ class WishlistScreen extends StatelessWidget {
     final wishProvider = Provider.of<WishProvider>(context);
     // final wishAttributes = Provider.of<WishModel>(context);
     GlobalMethods globalMethod = GlobalMethods();
+
     return wishProvider.getWishItems.isEmpty
         ? Scaffold(body: WishListEmpty())
         : Scaffold(
@@ -38,14 +39,6 @@ class WishlistScreen extends StatelessWidget {
                   },
                 )
               ],
-              // title: Text(
-              //   'Sản Phẩm Đã Thích: ' +
-              //       wishProvider.getWishItems.length.toString(),
-              //   style: TextStyle(
-              //     color: Colors.white,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
             ),
             body: Container(
               color: Theme.of(context).backgroundColor,
@@ -57,7 +50,6 @@ class WishlistScreen extends StatelessWidget {
                     value: wishProvider.getWishItems.values.toList()[idx],
                     child: WishlistFullScreen(
                       productId: wishProvider.getWishItems.keys.toList()[idx],
-                      // productId: wishListProvider.getWishItems.keys.toList()[idx],
                     ),
                   );
                 },
@@ -66,52 +58,3 @@ class WishlistScreen extends StatelessWidget {
           );
   }
 }
-    //     return wishListProvider.getWishItems.isEmpty
-    //         ? Scaffold(body: wishListEmpty())
-    //         : Scaffold(
-    //             // bottomSheet: checkoutSection(context, cartProvider.totalAmount),
-    //             appBar: AppBar(
-    //               iconTheme: IconThemeData(color: Colors.white),
-    //               title: Text(
-    //                 'Cart (${wishListProvider.getWishItems.length})',
-    //                 style: TextStyle(
-    //                   color: Colors.white,
-    //                   fontWeight: FontWeight.bold,
-    //                 ),
-    //               ),
-    //               actions: [
-    //                 IconButton(
-    //                   icon: Icon(Feather.trash),
-    //                   onPressed: () {
-    //                     // globalMethod.showDialogg(
-    //                     //   'xoá',
-    //                     //   'Your cart will be cleared!',
-    //                     //   () => cartProvider.clearCartItems(),
-    //                     //   context,
-    //                     // );
-    //                   },
-    //                 )
-    //               ],
-    //             ),
-    //             body: Container(
-    //               // color: Theme.of(context).backgroundColor,
-    //               // margin: const EdgeInsets.only(bottom: 60),
-    //               // child: ListView.builder(
-    //               //   itemCount: wishListProvider.getWishItems.length,
-    //               //   itemBuilder: (BuildContext ctx, int idx) {
-    //               //     return ChangeNotifierProvider.value(
-    //               //       value: wishListProvider.getWishItems.values.toList()[idx],
-    //               //       child: WishlistFullScreen(
-    //               //         productId:
-    //               //             wishListProvider.getWishItems.keys.toList()[idx],
-    //               //         // productId: wishListProvider.getWishItems.keys.toList()[idx],
-    //               //       ),
-    //               //     );
-    //               //   },
-    //               // ),
-    //             ),
-    //           );
-    //   }
-    // }
-//   }
-// }

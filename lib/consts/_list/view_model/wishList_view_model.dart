@@ -10,14 +10,6 @@ class WishProvider with ChangeNotifier {
     return {...wishItems};
   }
 
-  // double get totalAmount {
-  //   var total = 0.0;
-  //   cartItems.forEach((key, value) {
-  //     total += value.price * value.quantity;
-  //   });
-  //   return total;
-  // }
-
   void addWishList(
     String productId,
     double price,
@@ -32,7 +24,6 @@ class WishProvider with ChangeNotifier {
           productId: exitingCartItem.productId,
           title: exitingCartItem.title,
           price: exitingCartItem.price,
-          // quantity: exitingCartItem.quantity,
           imageUrl: exitingCartItem.imageUrl!,
         ),
       );

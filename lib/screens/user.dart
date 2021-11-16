@@ -4,20 +4,29 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_app/consts/theme_data.dart';
+import 'package:flutter_app/consts/_list/Model/profiles_model.dart';
+import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
+import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
+// import 'package:flutter_app/consts/theme_data.dart';
 //import 'package:flutter_app/consts/theme_data.dart';
 // import 'package:flutter_app/main.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/WishList/wishlist.dart';
+import 'package:flutter_app/screens/Widget/order/order.dart';
+import 'package:flutter_app/screens/Widget/upload/Product_upload.dart';
+import 'package:flutter_app/screens/Widget/upload/profile_upload.dart';
+import 'package:flutter_app/screens/landing_page.dart';
 import 'package:provider/provider.dart';
 // ignore: unused_import
 import '../consts/colors.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'Widget/Cart/cart.dart';
 
 class UserScreen extends StatefulWidget {
+  static const routeName = '/UserScreen';
   @override
   _UserScreenState createState() => _UserScreenState();
 }
@@ -41,6 +50,11 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
+    final _profileViewModel = Provider.of<ProfileViewModel>(context);
+    final _userViewModel = Provider.of<UserViewModel>(context);
+
+    var a = _profileViewModel.profileList;
+
     // ignore: unused_local_variable
     var _buildFab = buildFab();
     return SafeArea(
@@ -135,6 +149,10 @@ class _UserScreenState extends State<UserScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
+                        Divider(
+                          thickness: 2,
+                          color: Theme.of(context).primaryColorLight,
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: userTitle(
@@ -186,9 +204,28 @@ class _UserScreenState extends State<UserScreen> {
                           color: Colors.transparent,
                           child: InkWell(
                             splashColor: Theme.of(context).primaryColorLight,
-                            onTap: () => Navigator.of(context),
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(OrderScreen.routeName),
                             child: ListTile(
-                              title: Text('Thêm',
+                              title: Text('Order',
+                                  style: TextStyle(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900)),
+                              trailing: Icon(Icons.chevron_right_rounded),
+                              // leading: Icon(),
+                            ),
+                          ),
+                        ),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Theme.of(context).primaryColorLight,
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(OrderScreen.routeName),
+                            child: ListTile(
+                              title: Text('bill',
                                   style: TextStyle(
                                       color:
                                           Theme.of(context).primaryColorLight,
@@ -208,10 +245,101 @@ class _UserScreenState extends State<UserScreen> {
                           padding: const EdgeInsets.only(left: 20),
                           child: userTitle('Thông Tin Người Dùng'),
                         ),
-                        userListTitle('Email', 'sub', 0, context),
-                        userListTitle('Số Điện Thoại', 'sub', 1, context),
-                        userListTitle('Đang Giao Hàng', 'sub', 2, context),
-                        userListTitle('Tình Trạng Đơn Hàng', 'sub', 3, context),
+                        userListTitle(_userViewModel.userModel.data!.username!,
+                            3, context,
+                            subTitle: ''),
+                        userListTitle(
+                            a.data!.isEmpty
+                                ? 'chưa thêm email'
+                                : a.data!.first.user!.email!,
+                            0,
+                            context,
+                            subTitle: 'Email'),
+                        userListTitle(
+                            a.data!.isEmpty
+                                ? 'Chưa thêm tên người dùng'
+                                : a.data!.first.name!,
+                            3,
+                            context,
+                            subTitle: 'Họ và tên'),
+                        userListTitle(
+                            a.data!.isEmpty
+                                ? 'chưa thêm sđt'
+                                : a.data!.first.phone!,
+                            1,
+                            context,
+                            subTitle: 'Số điện Thoại'),
+                        userListTitle(
+                            a.data!.isEmpty
+                                ? 'chưa thêm địa chỉ'
+                                : a.data!.first.address!.street! +
+                                    ' ' +
+                                    a.data!.first.address!.city! +
+                                    ' ' +
+                                    a.data!.first.address!.province! +
+                                    ' ' +
+                                    a.data!.first.address!.state!,
+                            2,
+                            context,
+                            subTitle: 'Địa chỉ'),
+                        Divider(
+                          endIndent:
+                              _userViewModel.userModel.data!.isAdmin == true
+                                  ? 0
+                                  : 500,
+                          thickness: 2,
+                          color: Theme.of(context).primaryColorLight,
+                        ),
+                        _userViewModel.userModel.data!.isAdmin == true
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: userTitle('admin'))
+                            : Container(
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor:
+                                        Theme.of(context).primaryColorLight,
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed(ProfileUpLoad.routeName),
+                                    child: Column(children: [
+                                      userTitle('User: '),
+                                      ListTile(
+                                        title: Text('Thêm thông tin người dùng',
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .primaryColorLight,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w900)),
+                                        trailing:
+                                            Icon(Icons.chevron_right_rounded),
+                                        // leading: Icon(),
+                                      ),
+                                    ]),
+                                  ),
+                                ),
+                              ),
+                        _userViewModel.userModel.data!.isAdmin == true
+                            ? Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  splashColor:
+                                      Theme.of(context).primaryColorLight,
+                                  onTap: () => Navigator.of(context)
+                                      .pushNamed(UploadProductForm.routeName),
+                                  child: ListTile(
+                                    title: Text('Thêm sản Phẩm',
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .primaryColorLight,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w900)),
+                                    trailing: Icon(Icons.chevron_right_rounded),
+                                    // leading: Icon(),
+                                  ),
+                                ),
+                              )
+                            : Container(),
                         Divider(
                           thickness: 2,
                           color: Theme.of(context).primaryColorLight,
@@ -245,7 +373,19 @@ class _UserScreenState extends State<UserScreen> {
                                 color: Theme.of(context).primaryColorLight),
                           ),
                         ),
-                        userListTitle('Logout', 'subTitle', 4, context),
+                        userListTitle(
+                          'Logout',
+                          4,
+                          context,
+                          onTap: () => {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LandingPage()),
+                              (route) => false,
+                            ),
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -303,22 +443,22 @@ class _UserScreenState extends State<UserScreen> {
     Icons.email,
     Icons.phone,
     Icons.local_shipping,
-    Icons.watch_later,
+    Icons.person,
     Icons.exit_to_app_rounded,
   ];
 
-  Widget userListTitle(
-      String title, String subTitle, int index, BuildContext context) {
+  Widget userListTitle(String title, int index, BuildContext context,
+      {VoidCallback? onTap, String? subTitle}) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
         splashColor: Theme.of(context).primaryColorLight,
         child: ListTile(
-          onTap: () {},
+          onTap: onTap,
           title: Text(title,
               style: TextStyle(color: Theme.of(context).primaryColorLight)),
           subtitle: Text(
-            subTitle,
+            subTitle ?? '',
             style: TextStyle(color: Theme.of(context).primaryColorLight),
           ),
           leading: Icon(

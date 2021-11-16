@@ -24,11 +24,8 @@ class _WishlistFullScreenState extends State<WishlistFullScreen> {
   Widget build(BuildContext context) {
     GlobalMethods globalMethod = GlobalMethods();
 
-    final themeChange = Provider.of<DarkThemeProvider>(context);
     final wishProvider = Provider.of<WishProvider>(context);
     final wishAttributes = Provider.of<WishModel>(context);
-
-    // double subtotal = cartAttributes.price * cartAttributes.quantity;
 
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(
@@ -36,15 +33,9 @@ class _WishlistFullScreenState extends State<WishlistFullScreen> {
         arguments: widget.productId,
       ),
       child: Container(
-        color: Theme.of(context).primaryColorLight,
+        color: Theme.of(context).backgroundColor,
         height: 135,
         margin: const EdgeInsets.all(10),
-        // padding: const EdgeInsets.all(5.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).backgroundColor,
-            border: Border.all(
-                width: 2, color: Theme.of(context).primaryColorLight)),
         child: Row(
           children: [
             Container(
@@ -128,54 +119,8 @@ class _WishlistFullScreenState extends State<WishlistFullScreen> {
                         ),
                       ],
                     ),
-                    // SizedBox(
-                    //   height: 10,
-                    // ),
-                    // Row(
-                    //   children: [
-                    // Text(
-                    //   'Sub Total: ',
-                    //   // ignore: deprecated_member_use
-                    //   style: TextStyle(
-                    //       // ignore: deprecated_member_use
-                    //       color: Theme.of(context).textSelectionColor),
-                    // ),
-                    // SizedBox(
-                    //   width: 5,
-                    // ),
-                    // FittedBox(
-                    //   child: Text(
-                    //     'data',
-                    //     // '${subtotal.toStringAsFixed(2)} \$',
-                    //     style: TextStyle(
-                    //       // fontSize: 16,
-                    //       fontWeight: FontWeight.w600,
-                    //       color: themeChange.darkTheme
-                    //           ? Colors.brown[700]
-                    //           // ignore: deprecated_member_use
-                    //           : Theme.of(context).textSelectionColor,
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
-                // SizedBox(
-                //   height: 5,
-                // ),
-                // Row(
-                //   children: [
-                //     Text(
-                //       'Ships Free',
-                //       style: TextStyle(
-                //         fontSize: 16,
-                //         color: themeChange.darkTheme
-                //             ? Colors.brown.shade900
-                //             : Theme.of(context).accentColor,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                //],
               ),
             ),
             //),

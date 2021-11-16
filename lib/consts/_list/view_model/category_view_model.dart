@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/src/material/dropdown.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/Model/product_error.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';
@@ -34,10 +35,7 @@ class CategoryViewModel extends ChangeNotifier {
   getCategory() async {
     setLoading(true);
 
-    print("Start CategoryService.fetchCategory()");
     var response = await CategoryService.fetchCategory();
-    print("End CategoryService.fetchCategory()");
-    print(response.toString());
 
     if (response is Success) {
       setCategoryListModel(response.response as List<CategoryModel>);

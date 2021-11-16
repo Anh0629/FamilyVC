@@ -29,6 +29,7 @@ class _CartFullScreenState extends State<CartFullScreen> {
     final cartProvider = Provider.of<CartProvider>(context);
     final cartAttributes = Provider.of<CartModel>(context);
     final productProvider = Provider.of<ProductViewModel>(context);
+
     final productAttributes = productProvider.findById(widget.productId!);
 
     // double subtotal = cartAttributes.price * cartAttributes.quantity;
@@ -57,7 +58,6 @@ class _CartFullScreenState extends State<CartFullScreen> {
                 color: Theme.of(context).primaryColorLight,
                 borderRadius: BorderRadius.circular(7),
                 image: DecorationImage(
-                  // image: NetworkImage(cartAttributes.imageUrl!),
                   image: AssetImage(cartAttributes.imageUrl!),
                   fit: BoxFit.contain,
                 ),
@@ -221,15 +221,6 @@ class _CartFullScreenState extends State<CartFullScreen> {
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.12,
                             padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                                // gradient: LinearGradient(
-                                //   colors: [
-                                //     MyColors.gradiendLStart,
-                                //     MyColors.gradiendLEnd,
-                                //   ],
-                                //   stops: [0.0, 0.7],
-                                // ),
-                                ),
                             child: Text(
                               cartAttributes.quantity.toString(),
                               style: TextStyle(
