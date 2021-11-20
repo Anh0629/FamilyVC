@@ -89,8 +89,8 @@ class _WishlistFullScreenState extends State<WishlistFullScreen> {
                               ),
                               onTap: () {
                                 globalMethod.showDialogg(
-                                    'title',
-                                    'subTitle',
+                                    'Xoá sản phẩm',
+                                    'bạn chắc chắn muốn xoá sản phẩm này !',
                                     () => wishProvider
                                         .removeItem(widget.productId!),
                                     context);

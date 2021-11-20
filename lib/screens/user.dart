@@ -200,42 +200,6 @@ class _UserScreenState extends State<UserScreen> {
                             ),
                           ),
                         ),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: Theme.of(context).primaryColorLight,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(OrderScreen.routeName),
-                            child: ListTile(
-                              title: Text('Order',
-                                  style: TextStyle(
-                                      color:
-                                          Theme.of(context).primaryColorLight,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w900)),
-                              trailing: Icon(Icons.chevron_right_rounded),
-                              // leading: Icon(),
-                            ),
-                          ),
-                        ),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: Theme.of(context).primaryColorLight,
-                            onTap: () => Navigator.of(context)
-                                .pushNamed(OrderScreen.routeName),
-                            child: ListTile(
-                              title: Text('bill',
-                                  style: TextStyle(
-                                      color:
-                                          Theme.of(context).primaryColorLight,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w900)),
-                              trailing: Icon(Icons.chevron_right_rounded),
-                              // leading: Icon(),
-                            ),
-                          ),
-                        ),
                         Divider(
                           //giai phan cach
                           thickness: 2,

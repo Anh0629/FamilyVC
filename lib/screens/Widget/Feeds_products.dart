@@ -21,10 +21,10 @@ class _FeedProductsState extends State<FeedProducts> {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 4.0),
         width: 150,
-        height: 150,
+        height: 250,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Theme.of(context).backgroundColor,
+          color: Colors.orange[50],
           border:
               Border.all(width: 2, color: Theme.of(context).primaryColorLight),
         ),
@@ -44,7 +44,7 @@ class _FeedProductsState extends State<FeedProducts> {
                   width: double.infinity,
                   constraints: BoxConstraints(
                       minHeight: 50,
-                      maxHeight: MediaQuery.of(context).size.height * 0.18),
+                      maxHeight: MediaQuery.of(context).size.height * 0.5),
                   child: Image.asset(
                     'assets/images/healthyfood.png',
                     fit: BoxFit.fitHeight,
@@ -121,9 +121,4 @@ class _FeedProductsState extends State<FeedProducts> {
       ),
     );
   }
-
-// Widget ProductModelDetail findById(String id){
-//   return
-// };
-
 }

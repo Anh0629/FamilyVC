@@ -102,8 +102,8 @@ class _CartFullScreenState extends State<CartFullScreen> {
                               ),
                               onTap: () {
                                 globalMethod.showDialogg(
-                                    'title',
-                                    'subTitle',
+                                    'Xoá Sản Phẩm ',
+                                    'Bạn Chắc chắn xoá sản phẩm này ! ',
                                     () => cartProvider
                                         .removeItem(widget.productId!),
                                     context);

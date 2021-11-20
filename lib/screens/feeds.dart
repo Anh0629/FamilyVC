@@ -19,7 +19,7 @@ class FeedsScreen extends StatelessWidget {
         padding: EdgeInsets.only(top: 5.0),
         child: GridView.count(
           crossAxisCount: 2,
-          childAspectRatio: 200 / 280,
+          childAspectRatio: 200 / 320,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
           children: List.generate(

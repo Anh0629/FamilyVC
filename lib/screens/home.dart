@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(children: [
                       Container(
                         child: Text(
-                          'Danh mục',
+                          'Danh mục loại sản phẩm',
                           style: TextStyle(
                               color: Theme.of(context).backgroundColor,
                               // ignore: deprecated_member_use
@@ -131,19 +131,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Spacer(),
                       // ignore: deprecated_member_use
-                      FlatButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Xem tất cả',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 15,
-                            color:
-                                // ignore: deprecated_member_use
-                                Theme.of(context).backgroundColor,
-                          ),
-                        ),
-                      ),
+                      // FlatButton(
+                      //   onPressed: () {},
+                      //   child: Text(
+                      //     'Xem tất cả',
+                      //     style: TextStyle(
+                      //       fontWeight: FontWeight.w800,
+                      //       fontSize: 15,
+                      //       color:
+                      //           // ignore: deprecated_member_use
+                      //           Theme.of(context).backgroundColor,
+                      //     ),
+                      //   ),
+                      // ),
                     ]),
                   ),
                 ),

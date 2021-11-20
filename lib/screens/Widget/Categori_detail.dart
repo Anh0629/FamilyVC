@@ -67,7 +67,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: 250 / 345,
+                childAspectRatio: 250 / 370,
                 children: List.generate(
                   productListByCategory.length,
                   (index) {
@@ -82,33 +82,3 @@ class _CategoryDetailState extends State<CategoryDetail> {
     );
   }
 }
-
-// child: Column(
-//   children: [
-//     Text(productAttributes.map((e) => e.name).toString()),
-//     SizedBox(height: 10),
-//     Text(productAttributes.map((e) => e.category.name).toString()),
-//     SizedBox(height: 10),
-//     Text(productAttributes.map((e) => e.countInStock).toString()),
-//     SizedBox(height: 10),
-//     Text(productAttributes.map((e) => e.price).toString()),
-//     SizedBox(height: 10),
-//   ],
-// ),
-
-// body: GridView.count(
-//     crossAxisCount: 2,
-//     childAspectRatio: 200 / 280,
-//     crossAxisSpacing: 8,
-//     mainAxisSpacing: 8,
-//     children:
-//         List.generate(productViewModel.productList.length,
-//          (index) {
-//       return ChangeNotifierProvider.value(
-//         value: categoryViewModel.categoryList[index],
-//         // child:
-//             // Text(productAttributesById.map((e) => e.name).toString()),
-//         // child: productDetailsCategory(),
-//         child: productAttributesById.,
-//       );
-//     }))

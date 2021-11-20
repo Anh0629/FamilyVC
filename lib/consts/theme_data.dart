@@ -9,6 +9,7 @@ class Styles {
       backgroundColor: isDarkTheme ? Colors.black : Colors.white,
       primaryColorLight: isDarkTheme ? Colors.indigo[400] : HexColor("FDA65D"),
       indicatorColor: isDarkTheme ? Colors.indigo : HexColor("FFDFAF"),
+      
       dialogBackgroundColor: isDarkTheme ? Colors.indigo[400] : Colors.white,
       // ignore: deprecated_member_use
       textSelectionColor: isDarkTheme ? Colors.indigo : HexColor("FF8243"),

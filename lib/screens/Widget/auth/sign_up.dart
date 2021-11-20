@@ -36,68 +36,73 @@ class _RegisterPageState extends State<RegisterPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Login'),
+          title: const Text('SignUp'),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                textFieldWidget(
-                  _usernameController,
-                  "Username",
-                  false,
-                  false,
-                ),
-                textFieldWidget(
-                  _emailController,
-                  "Email ",
-                  false,
-                  false,
-                ),
-                textFieldWidget(
-                  _pwdController,
-                  "Password",
-                  true,
-                  true,
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      data = {
-                        "username": _usernameController.text,
-                        "email": _emailController.text,
-                        "password": _pwdController.text,
-                        "isAdmin": false,
-                      };
-                      print(data);
-                      print('a');
+        body: Container(
+          color: Colors.orange[50],
+          height: MediaQuery.of(context).size.height * 1,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  textFieldWidget(
+                    _usernameController,
+                    "Username",
+                    false,
+                    false,
+                  ),
+                  textFieldWidget(
+                    _emailController,
+                    "Email ",
+                    false,
+                    false,
+                  ),
+                  textFieldWidget(
+                    _pwdController,
+                    "Password",
+                    true,
+                    true,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        data = {
+                          "username": _usernameController.text,
+                          "email": _emailController.text,
+                          "password": _pwdController.text,
+                          "isAdmin": false,
+                        };
+                        print(data);
+                        print('a');
 
-                      await _userSignUpViewModel.userSignUp(data);
-                      final a = _userSignUpViewModel.userModel;
-                      print(_userSignUpViewModel.userModel);
+                        await _userSignUpViewModel.userSignUp(data);
+                        final a = _userSignUpViewModel.userModel;
+                        print(_userSignUpViewModel.userModel);
 
-                      if (a.status!) {
-                        print('signup ok');
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                          (route) => false,
-                        );
+                        if (a.status!) {
+                          print('signup ok');
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                            (route) => false,
+                          );
+                        } else {
+                          print('sign up k dc');
+                        }
                       } else {
-                        print('sign up k dc');
+                        final snackBar = SnackBar(
+                          content: Text("Please check on Checkbox"),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
-                    } else {
-                      final snackBar = SnackBar(
-                        content: Text("Please check on Checkbox"),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
-                  child: Text("Register"),
-                ),
-              ],
+                    },
+                    child: Text("Register"),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
