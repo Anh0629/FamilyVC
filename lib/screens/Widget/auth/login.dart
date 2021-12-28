@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_bar.dart';
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-import 'package:flutter_app/screens/Widget/order/order.dart';
 
 import 'package:provider/provider.dart';
 

@@ -5,6 +5,7 @@ import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/product_details.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart' show Entypo;
 import 'package:provider/provider.dart';
 

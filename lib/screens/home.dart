@@ -1,22 +1,19 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_swiper/flutter_swiper.dart' show Swiper;
+import 'package:provider/provider.dart';
+
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
-import 'package:flutter_app/consts/_list/Model/profiles_model.dart';
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
-// import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
-import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/category.dart';
 import 'package:flutter_app/screens/Widget/product_home_.dart';
-import 'package:flutter_app/screens/feeds.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:provider/provider.dart';
+
 import 'Widget/popular_products.dart';
+import 'feeds.dart' show FeedsScreen;
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {

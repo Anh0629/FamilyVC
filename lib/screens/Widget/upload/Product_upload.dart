@@ -27,10 +27,15 @@ class UploadProductForm extends StatefulWidget {
 class _UploadProductFormState extends State<UploadProductForm> {
   final _formKey = GlobalKey<FormState>();
   bool validate = false;
+  // ignore: unused_field
   var _productTitle = '';
+  // ignore: unused_field
   var _productPrice = '';
+  // ignore: unused_field
   var _productCategory = '';
+  // ignore: unused_field
   var _productDescription = '';
+  // ignore: unused_field
   var _productQuantity = '';
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _productTitleController = TextEditingController();

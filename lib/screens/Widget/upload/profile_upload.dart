@@ -4,7 +4,6 @@ import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-import 'package:flutter_app/screens/user.dart';
 import 'package:provider/provider.dart';
 
 // ignore: camel_case_types

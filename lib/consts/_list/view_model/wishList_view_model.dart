@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app/consts/_list/Model/WishList_model.dart';
-import 'package:flutter_app/consts/_list/Model/cart_model.dart';
-import 'package:flutter_app/screens/Widget/product_details.dart';
 
 class WishProvider with ChangeNotifier {
   Map<String, WishModel> wishItems = {};

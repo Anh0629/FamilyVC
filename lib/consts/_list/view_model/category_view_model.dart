@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/material/dropdown.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/Model/product_error.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';

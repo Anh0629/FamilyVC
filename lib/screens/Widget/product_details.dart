@@ -15,6 +15,7 @@ import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
 //import 'package:flutter_app/consts/colors.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 // ignore: unused_import
 import 'package:fluttericon/elusive_icons.dart';
