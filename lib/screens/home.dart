@@ -110,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+                // category
                 Container(
                   height: MediaQuery.of(context).size.height * 0.05,
                   color: Theme.of(context).primaryColorLight,
@@ -127,23 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Spacer(),
-                      // ignore: deprecated_member_use
-                      // FlatButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     'Xem tất cả',
-                      //     style: TextStyle(
-                      //       fontWeight: FontWeight.w800,
-                      //       fontSize: 15,
-                      //       color:
-                      //           // ignore: deprecated_member_use
-                      //           Theme.of(context).backgroundColor,
-                      //     ),
-                      //   ),
-                      // ),
+                      
                     ]),
                   ),
                 ),
+                // thuc thi category
                 Container(
                   child: Container(
                     padding: const EdgeInsets.all(4.0),

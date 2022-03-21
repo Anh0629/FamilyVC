@@ -74,6 +74,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         print('a');
 
                         await _userSignUpViewModel.userSignUp(data);
+
+                        
                         final a = _userSignUpViewModel.userModel;
                         print(_userSignUpViewModel.userModel);
 
@@ -116,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
           if (value!.isEmpty) {
             return 'Enter something';
           }
+          return null;
         },
         obscureText: obscureText ? vis : false,
         decoration: InputDecoration(

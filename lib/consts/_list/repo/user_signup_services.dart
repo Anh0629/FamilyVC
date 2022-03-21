@@ -18,9 +18,7 @@ class UserSignUpServices {
         // encode: Object => Json Object
         body: json.encode(body),
       );
-      print(USER_SIGN_UP_URL);
-      print(response.body);
-      print('UserSignUpServices');
+      
 
       if (response.statusCode == 200) {
         return Success(code: 200, response: userModelFromJson(response.body));

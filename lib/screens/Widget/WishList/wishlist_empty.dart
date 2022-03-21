@@ -28,6 +28,7 @@ class WishListEmpty extends StatelessWidget {
               child: Text(
                 'Giỏ hàng của bạn đang không có gì nè !!!',
                 style: TextStyle(
+                    // ignore: deprecated_member_use
                     color: Theme.of(context).buttonColor,
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -37,6 +38,7 @@ class WishListEmpty extends StatelessWidget {
             Text(
               'Quay lại mua hàng tiếp nhé ',
               style: TextStyle(
+                  // ignore: deprecated_member_use
                   color: Theme.of(context).buttonColor,
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -53,6 +55,7 @@ class WishListEmpty extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   side: BorderSide(color: Colors.pink.shade100),
                 ),
+                // ignore: deprecated_member_use
                 color: Theme.of(context).buttonColor,
                 child: SizedBox(
                   child: Center(

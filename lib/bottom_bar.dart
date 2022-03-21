@@ -59,6 +59,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           backgroundColor: Theme.of(context).primaryColorLight,
           // ignore: deprecated_member_use
           unselectedItemColor: Theme.of(context).primaryColorLight,
+          // ignore: deprecated_member_use
           selectedItemColor: Theme.of(context).buttonColor,
           currentIndex: selectedIndex,
           items: [

@@ -186,6 +186,7 @@ class _CartFullScreenState extends State<CartFullScreen> {
                             fontSize: 16,
                             color: themeChange.darkTheme
                                 ? Colors.brown.shade900
+                                // ignore: deprecated_member_use
                                 : Theme.of(context).accentColor,
                           ),
                         ),

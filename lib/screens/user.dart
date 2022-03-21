@@ -1,15 +1,13 @@
 // import 'dart:ffi';
 
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
+import 'package:flutter_app/screens/Widget/User/user_witget.dart';
 import 'package:flutter_app/screens/Widget/WishList/wishlist.dart';
-import 'package:flutter_app/screens/Widget/upload/Product_upload.dart';
-import 'package:flutter_app/screens/Widget/upload/profile_upload.dart';
+import 'package:flutter_app/screens/Widget/admin/admin.dart';
 import 'package:flutter_app/screens/landing_page.dart';
 import 'package:provider/provider.dart';
 // ignore: unused_import
@@ -55,6 +53,7 @@ class _UserScreenState extends State<UserScreen> {
     return SafeArea(
       child: Scaffold(
         // backgroundColor: Colors.pink[200],
+
         body: Stack(
           children: [
             CustomScrollView(
@@ -137,6 +136,7 @@ class _UserScreenState extends State<UserScreen> {
                 ),
                 SliverToBoxAdapter(
                   child: Container(
+                    //height: MediaQuery.of(context).size.longestSide,
                     color: Theme.of(context).backgroundColor,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment
@@ -250,55 +250,16 @@ class _UserScreenState extends State<UserScreen> {
                           color: Theme.of(context).primaryColorLight,
                         ),
                         _userViewModel.userModel.data!.isAdmin == true
-                            ? Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: userTitle('admin'))
-                            : Container(
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    splashColor:
-                                        Theme.of(context).primaryColorLight,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed(ProfileUpLoad.routeName),
-                                    child: Column(children: [
-                                      userTitle('User: '),
-                                      ListTile(
-                                        title: Text('Thêm thông tin người dùng',
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .primaryColorLight,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w900)),
-                                        trailing:
-                                            Icon(Icons.chevron_right_rounded),
-                                        // leading: Icon(),
-                                      ),
-                                    ]),
-                                  ),
-                                ),
-                              ),
-                        _userViewModel.userModel.data!.isAdmin == true
-                            ? Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor:
-                                      Theme.of(context).primaryColorLight,
-                                  onTap: () => Navigator.of(context)
-                                      .pushNamed(UploadProductForm.routeName),
-                                  child: ListTile(
-                                    title: Text('Thêm sản Phẩm',
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .primaryColorLight,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w900)),
-                                    trailing: Icon(Icons.chevron_right_rounded),
-                                    // leading: Icon(),
-                                  ),
-                                ),
+                            ? Container(
+                                child: AdminScreen(),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
                               )
-                            : Container(),
+                            : Container(
+                                child: DecentralizeUser(),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                              ),
                         Divider(
                           thickness: 2,
                           color: Theme.of(context).primaryColorLight,
@@ -435,6 +396,7 @@ class _UserScreenState extends State<UserScreen> {
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 24,
+        // ignore: deprecated_member_use
         color: Theme.of(context).buttonColor,
         height: 2,
       ),

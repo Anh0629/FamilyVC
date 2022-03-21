@@ -17,18 +17,26 @@ class CategoryModel with ChangeNotifier {
   CategoryModel({
     required this.id,
     required this.name,
+    required this.success,
+    required this.message,
   });
 
   String id;
   String name;
+  bool success;
+  String message;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
         id: json["_id"] == null ? null : json["_id"],
         name: json["name"] == null ? null : json["name"],
+        success: json["success"],
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
         "name": name,
+        "success": success,
+        "message": message,
       };
 }

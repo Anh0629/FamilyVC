@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 
@@ -78,6 +78,7 @@ class _profileUpLoadState extends State<ProfileUpLoad> {
                               };
                               print(data);
                               await profileUpLoadView.postProfileUpLoad(data);
+                              // goi lai get profile
                               var a = profileUpLoadView.profileList;
                               if (a.status!) {
                                 Navigator.pushReplacement(

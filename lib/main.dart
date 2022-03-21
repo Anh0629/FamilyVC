@@ -1,4 +1,9 @@
+// @dart=2.9
 import "package:flutter/material.dart";
+// ignore: unused_import
+import 'package:flutter_app/bottom_bar.dart';
+import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
+import 'package:flutter_app/consts/_list/view_model/User_Update_pass_model.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
@@ -8,22 +13,27 @@ import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
 import 'package:flutter_app/consts/theme_data.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/Categori_detail.dart';
+import 'package:flutter_app/screens/Widget/User/user_patchPassword.dart';
+import 'package:flutter_app/screens/Widget/admin/admin.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/order/order.dart';
+import 'package:flutter_app/screens/Widget/product/Product_delete.dart';
 import 'package:flutter_app/screens/Widget/upload/Product_upload.dart';
+import 'package:flutter_app/screens/Widget/upload/postNewCategory.dart';
 import 'package:flutter_app/screens/Widget/upload/profile_upload.dart';
-import 'package:flutter_app/screens/Widget/product/Product_upload.dart';
+//import 'package:flutter_app/screens/Widget/product/Product_upload.dart';
 import 'package:flutter_app/screens/feeds.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/Widget/WishList/wishlist.dart';
 import 'package:flutter_app/screens/landing_page.dart';
+
 import 'package:provider/provider.dart';
 
 import 'consts/_list/view_model/order_view_model.dart';
 import 'consts/_list/view_model/signUp_view_model.dart';
 import 'screens/Widget/Cart/cart.dart';
 import 'screens/Widget/product_details.dart';
-
+ 
 void main() {
   runApp(MyApp());
 }
@@ -63,6 +73,12 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) {
             return OrderViewModel();
           }),
+          ChangeNotifierProvider(create: (_) {
+            return UserUpdatePassModel();
+          }),
+          ChangeNotifierProvider(create: (_){
+            return CategoryModel(id: '', message: '', name: '', success: null);
+          }),
         ],
         child:
             Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
@@ -74,7 +90,7 @@ class MyApp extends StatelessWidget {
             routes: {
               WishlistScreen.routeName: (ctx) => WishlistScreen(),
               CartScreen.routeName: (ctx) => CartScreen(),
-              FeedsScreen.routeName: (ctx) => FeedsScreen(),
+              FeedsScreen.routeName: (ctx) => FeedsScreen(),  
               HomeScreen.routeName: (ctx) => HomeScreen(),
               productDetails.routeName: (ctx) => productDetails(),
               CategoryDetail.routeName: (ctx) => CategoryDetail(),
@@ -82,6 +98,11 @@ class MyApp extends StatelessWidget {
               UploadProductForm.routeName: (ctx) => UploadProductForm(),
               ProfileUpLoad.routeName: (ctx) => ProfileUpLoad(),
               OrderScreen.routeName: (ctx) => OrderScreen(),
+              UserPatch.routerName:(ctx)=> UserPatch(),
+              NewCategory.routeName:(ctx)=>NewCategory(),
+              AdminScreen.routerName:(ctx)=>AdminScreen(),
+              ProductDeleteScreen.routerName:(ctx)=>ProductDeleteScreen(),
+              
             },
           );
         }));

@@ -8,11 +8,14 @@ class Styles {
       scaffoldBackgroundColor: isDarkTheme ? Colors.black : Colors.indigo[100],
       backgroundColor: isDarkTheme ? Colors.black : Colors.white,
       primaryColorLight: isDarkTheme ? Colors.indigo[400] : HexColor("FDA65D"),
+      //FFDFAF cam nhat
       indicatorColor: isDarkTheme ? Colors.indigo : HexColor("FFDFAF"),
+
       
       dialogBackgroundColor: isDarkTheme ? Colors.indigo[400] : Colors.white,
       // ignore: deprecated_member_use
       textSelectionColor: isDarkTheme ? Colors.indigo : HexColor("FF8243"),
+      // ignore: deprecated_member_use
       buttonColor: isDarkTheme ? Colors.indigo : HexColor("FF8243"),
 
       textTheme: TextTheme(
