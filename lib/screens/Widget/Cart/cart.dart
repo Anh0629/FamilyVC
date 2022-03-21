@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/consts/_list/Model/cart_model.dart';
 import 'package:flutter_app/consts/_list/utils/global_method.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/order_view_model.dart';
 //'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-
-import 'package:flutter_app/screens/Widget/order/order.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 

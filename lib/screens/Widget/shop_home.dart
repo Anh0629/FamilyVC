@@ -6,6 +6,7 @@ class shopHome extends StatefulWidget {
   _shopHomeState createState() => _shopHomeState();
 }
 
+// ignore: camel_case_types
 class _shopHomeState extends State<shopHome> {
   @override
   Widget build(BuildContext context) {

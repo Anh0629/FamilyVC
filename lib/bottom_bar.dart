@@ -6,6 +6,9 @@ import 'package:flutter_app/screens/search.dart';
 import 'package:flutter_app/screens/user.dart';
 
 import 'screens/Widget/Cart/cart.dart';
+import 'screens/feeds.dart';
+import 'screens/home.dart';
+import 'screens/user.dart';
 
 class BottomBarScreen extends StatefulWidget {
   static const routeName = '/BottomBarScreen';
@@ -56,6 +59,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           backgroundColor: Theme.of(context).primaryColorLight,
           // ignore: deprecated_member_use
           unselectedItemColor: Theme.of(context).primaryColorLight,
+          // ignore: deprecated_member_use
           selectedItemColor: Theme.of(context).buttonColor,
           currentIndex: selectedIndex,
           items: [

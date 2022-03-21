@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_app/consts/_list/Model/cart_model.dart';
-import 'package:flutter_app/consts/_list/Model/profiles_model.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/order_view_model.dart';
@@ -27,6 +26,7 @@ class _TestState extends State<Test> {
     final order = Provider.of<OrderViewModel>(context);
     final user = Provider.of<UserViewModel>(context);
     final profile = Provider.of<ProfileViewModel>(context);
+    // ignore: unused_local_variable
     final cartProvider = Provider.of<CartProvider>(context);
     List<OrderItems> list = [];
     var map1 = Map.fromIterable(list, key: (e) => e.id, value: (e) => e.sl);
@@ -92,7 +92,7 @@ class _TestState extends State<Test> {
   }
 }
 
-// LÀM ĐƯỢC GỒI haha thấy gồi
+
 Widget textFormField(TextEditingController controller, String title,
     BuildContext context, String hintText) {
   return Material(

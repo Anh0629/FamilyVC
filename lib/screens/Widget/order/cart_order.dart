@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/screens/Widget/Cart/cart_empty.dart';
@@ -23,6 +23,10 @@ class _CartOderScreenState extends State<CartOrderScreen> {
         ? Scaffold(
             body: CartEmpty(),
           )
+
+
+
+
         : Scaffold(
             bottomSheet: checkoutSection(context, cartProvider.totalAmount),
             appBar: AppBar(
@@ -53,6 +57,10 @@ class _CartOderScreenState extends State<CartOrderScreen> {
             ),
           );
   }
+
+
+
+
 
   Widget checkoutSection(BuildContext ctx, double subTotal) {
     return Row(children: [

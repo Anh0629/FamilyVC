@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/auth/sign_up.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 
 class LandingPage extends StatefulWidget {

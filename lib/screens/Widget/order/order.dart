@@ -1,16 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_app/consts/_list/Model/cart_model.dart';
-import 'package:flutter_app/consts/_list/Model/profiles_model.dart';
 import 'package:flutter_app/consts/_list/view_model/cart_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/order_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-import 'package:flutter_app/screens/Widget/Cart/cart.dart';
-import 'package:flutter_app/screens/Widget/Cart/cart_full.dart';
-import 'package:flutter_app/screens/Widget/order/cart_order.dart';
 import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -99,7 +95,7 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 }
 
-// LÀM ĐƯỢC GỒI haha thấy gồi
+
 Widget textFormField(TextEditingController controller, String title,
     BuildContext context, String hintText) {
   return Material(

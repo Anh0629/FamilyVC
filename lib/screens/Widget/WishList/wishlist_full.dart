@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/Model/WishList_model.dart';
 import 'package:flutter_app/consts/_list/utils/global_method.dart';
 import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
-import 'package:flutter_app/provider/dark_theme.dart';
 import 'package:flutter_app/screens/Widget/product_details.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:fluttericon/entypo_icons.dart';
 import 'package:provider/provider.dart';
 
 class WishlistFullScreen extends StatefulWidget {

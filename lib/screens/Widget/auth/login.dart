@@ -2,10 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_bar.dart';
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
 import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/profile_view_model.dart';
-import 'package:flutter_app/screens/Widget/order/order.dart';
 
 import 'package:provider/provider.dart';
 
@@ -75,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         final a = _userViewModel.userModel;
                         print(a);
+                        print(data);
 
                         if (a.status!) {
                           Navigator.pushReplacement(
@@ -139,6 +138,7 @@ class _LoginPageState extends State<LoginPage> {
               };
             }
           }
+          return null;
         },
         obscureText: obscureText ? vis : false,
         decoration: InputDecoration(
@@ -159,13 +159,13 @@ class _LoginPageState extends State<LoginPage> {
           hintText: hintText,
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.orange, width: 3)),
+              borderSide: BorderSide(color: Color.fromARGB(255, 17, 0, 255), width: 3)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(color: Colors.teal.shade300, width: 3)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.red, width: 3)),
+              borderSide: BorderSide(color: Color.fromARGB(255, 54, 244, 70), width: 3)),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide(color: Colors.red, width: 3),

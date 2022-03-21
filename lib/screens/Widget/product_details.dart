@@ -1,10 +1,10 @@
 // import 'dart:ffi';
 
 //import 'dart:html';
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+
 import 'package:flutter_app/consts/_list/Model/product_list_model.dart';
 
 // ignore: unused_import
@@ -15,6 +15,7 @@ import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
 //import 'package:flutter_app/consts/colors.dart';
 import 'package:flutter_app/provider/dark_theme.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 // ignore: unused_import
 import 'package:fluttericon/elusive_icons.dart';
@@ -102,6 +103,7 @@ class ProductDetailsState extends State<productDetails> {
                                       width: 1, color: Colors.indigo),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Material(
+                                // ignore: deprecated_member_use
                                 color: Theme.of(context).buttonColor,
                                 borderRadius: BorderRadius.circular(20),
                                 child: InkWell(
@@ -315,6 +317,7 @@ class ProductDetailsState extends State<productDetails> {
                   wishProvider.getWishItems.containsKey(productId)
                       ? Entypo.heart
                       : Entypo.heart_outlined,
+                  // ignore: deprecated_member_use
                   color: Theme.of(context).buttonColor,
                 ),
                 onPressed: wishProvider.getWishItems.containsKey(productId)

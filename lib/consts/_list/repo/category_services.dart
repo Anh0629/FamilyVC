@@ -31,4 +31,25 @@ class CategoryService {
       return Failure(code: UNKNOWN_ERROR, errorResponse: 'Unknown Error');
     }
   }
+
+static Future<Object> fetchDelete(String idcategory) async {
+    try {
+      var response = await http.delete(Uri.parse(CATEGORY_URL+'$idcategory'));
+      print('delete ' + CATEGORY_URL +'$idcategory');
+      if (response.statusCode == 200) {
+        return Success(
+            code: 200, response: categoryModelFromJson(response.body));
+      }
+      return Failure(
+          code: PRODUCT_INVALID_RESPONSE, errorResponse: 'Invalid Response');
+    } on HttpException {
+      return Failure(code: NO_INTERNET, errorResponse: 'No Internet');
+    } on FormatException {
+      return Failure(code: INVALID_FORMAT, errorResponse: 'Invalid Format');
+    } catch (e) {
+      print(e.toString());
+      return Failure(code: UNKNOWN_ERROR, errorResponse: 'Unknown Error');
+    }
+  }
+
 }

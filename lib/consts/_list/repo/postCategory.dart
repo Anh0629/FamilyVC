@@ -1,28 +1,23 @@
+import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
+import 'package:flutter_app/consts/_list/Model/order_model.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';
 import 'package:flutter_app/consts/_list/utils/constants.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:http/http.dart' as http ;
 
-class UserServices {
-  static Future<Object> userLogin(var body) async {
+
+class PostCategory{
+  static Future<Object> fetch(var body)async {
     try {
       var response = await http.post(
-        Uri.parse(USER_LOGIN_URL),
-        // ket noi express
+        Uri.parse(CATEGORY_URL),
         headers: {
           'Content-Type': 'application/json',
         },
-        // encode: Object => Json Object
         body: json.encode(body),
       );
-      print('user services');
-      print(response.body);
-
       if (response.statusCode == 200) {
-        return Success(code: 200, response: userModelFromJson(response.body));
+        return Success(code: 200, response: orderFromJson(response.body));
       }
       return Failure(
           code: PRODUCT_INVALID_RESPONSE, errorResponse: 'Invalid Response');
@@ -33,5 +28,6 @@ class UserServices {
     } catch (e) {
       return Failure(code: UNKNOWN_ERROR, errorResponse: 'Unknown Error');
     }
+  
   }
 }

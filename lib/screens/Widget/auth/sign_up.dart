@@ -1,12 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bottom_bar.dart';
-import 'package:flutter_app/consts/_list/view_model/login_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/signUp_view_model.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'package:provider/provider.dart';
 
@@ -78,6 +74,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         print('a');
 
                         await _userSignUpViewModel.userSignUp(data);
+
+                        
                         final a = _userSignUpViewModel.userModel;
                         print(_userSignUpViewModel.userModel);
 
@@ -120,6 +118,7 @@ class _RegisterPageState extends State<RegisterPage> {
           if (value!.isEmpty) {
             return 'Enter something';
           }
+          return null;
         },
         obscureText: obscureText ? vis : false,
         decoration: InputDecoration(

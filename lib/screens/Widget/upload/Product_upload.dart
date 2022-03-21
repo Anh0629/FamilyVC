@@ -14,7 +14,6 @@ import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 // import 'package:image_picker/image_picker.dart';
-import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 class UploadProductForm extends StatefulWidget {
@@ -26,11 +25,17 @@ class UploadProductForm extends StatefulWidget {
 
 class _UploadProductFormState extends State<UploadProductForm> {
   final _formKey = GlobalKey<FormState>();
+  
   bool validate = false;
+  // ignore: unused_field
   var _productTitle = '';
+  // ignore: unused_field
   var _productPrice = '';
+  // ignore: unused_field
   var _productCategory = '';
+  // ignore: unused_field
   var _productDescription = '';
+  // ignore: unused_field
   var _productQuantity = '';
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _productTitleController = TextEditingController();
@@ -39,16 +44,21 @@ class _UploadProductFormState extends State<UploadProductForm> {
   final TextEditingController _productPriceController = TextEditingController();
   final TextEditingController _productDescriptionController =
       TextEditingController();
+
+   final TextEditingController _addnewcategory = TextEditingController();   
   Map<String, dynamic>? data = {};
+    // ignore: unused_field
+    String? _categoryValue;
 
-  String? _categoryValue;
 
-  var uuid = Uuid();
+  // var uuid = Uuid();
 
   @override
   Widget build(BuildContext context) {
     CategoryViewModel categoryViewModel =
         Provider.of<CategoryViewModel>(context);
+        
+    
 
     return Scaffold(
         appBar: AppBar(
@@ -83,7 +93,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                                       }
                                       return null;
                                     },
-                                    // keyboardType: TextInputType.emailAddress,
+                                   
                                     decoration: InputDecoration(
                                       labelText: 'Product Title',
                                     ),
@@ -247,7 +257,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                                   child: Container(
                                     child: TextFormField(
                                       enabled: false,
-                                      controller: _categoryController,
+                                      controller: _addnewcategory,
                                       key: ValueKey('Category'),
                                       validator: (value) {
                                         if (value!.isEmpty) {
@@ -269,6 +279,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
 
                               //buttom danh muc ----------------------------------------------------
                               DropdownButton<CategoryModel>(
+                                
                                 items: categoryViewModel.categoryList
                                     .map(buildDropdownMenuItem)
                                     .toList(),
@@ -346,7 +357,7 @@ class _UploadProductFormState extends State<UploadProductForm> {
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
                                       data = {
-                                        "category": _categoryValue,
+                                        "category": _addnewcategory.text,
                                         "name": _productTitleController.text,
                                         "price": _productPriceController.text,
                                         "description":
@@ -364,6 +375,8 @@ class _UploadProductFormState extends State<UploadProductForm> {
                                         body: json.encode(data),
                                         // "json object"== object
                                       );
+                                      await categoryViewModel.postCategory(data.toString());
+                                      await categoryViewModel.getCategory();
 
                                       if (response.statusCode == 200) {
                                         var data = json.decode(response.body);

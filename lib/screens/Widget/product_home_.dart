@@ -61,6 +61,7 @@ class _FeedProductsHomeState extends State<FeedProductsHome> {
                       maxLines: 2,
                       style: TextStyle(
                           fontSize: 14,
+                          // ignore: deprecated_member_use
                           color: Theme.of(context).textSelectionColor,
                           fontWeight: FontWeight.w600),
                     ),

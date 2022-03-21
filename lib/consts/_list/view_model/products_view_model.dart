@@ -39,7 +39,6 @@ class ProductViewModel with ChangeNotifier {
     if (response is Success) {
       setProductListModel(response.response as List<ProductModel>);
     }
-
     if (response is Failure) {
       Error productError =
           Error(code: response.code, message: response.errorResponse);

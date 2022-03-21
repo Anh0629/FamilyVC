@@ -1,29 +1,33 @@
+import 'dart:convert';
 import 'dart:io';
-
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
+import 'package:flutter_app/consts/_list/Model/user_update_Password.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';
 import 'package:flutter_app/consts/_list/utils/constants.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-class UserServices {
-  static Future<Object> userLogin(var body) async {
+class UserPatchPass {
+  static Future<Object> patchdata(var body, String userId) async {
     try {
-      var response = await http.post(
-        Uri.parse(USER_LOGIN_URL),
-        // ket noi express
+      var response = await http.patch(
+        Uri.parse(UPDATAPASS_URL + '$userId'),
         headers: {
           'Content-Type': 'application/json',
         },
-        // encode: Object => Json Object
-        body: json.encode(body),
+        body: json.encode(body)
       );
-      print('user services');
+
+      print('---------------------------------');
+      print(json.encode(body));
+      print(Uri.parse(UPDATAPASS_URL + '$userId'));
       print(response.body);
 
-      if (response.statusCode == 200) {
-        return Success(code: 200, response: userModelFromJson(response.body));
-      }
+
+      if(response.statusCode == 200){
+        return Success(
+          code: 200, response: UserUpdatePasswordFromJson(response.body)
+        );
+
+       }
       return Failure(
           code: PRODUCT_INVALID_RESPONSE, errorResponse: 'Invalid Response');
     } on HttpException {

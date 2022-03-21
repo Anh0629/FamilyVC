@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/utils/global_method.dart';
 import 'package:flutter_app/consts/_list/view_model/wishList_view_model.dart';
 import 'package:flutter_app/screens/Widget/WishList/wishlist_full.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 import 'wishlist_empty.dart';

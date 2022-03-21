@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/material/dropdown.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/Model/product_error.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';
 import 'package:flutter_app/consts/_list/repo/category_services.dart';
+import 'package:flutter_app/consts/_list/repo/postCategory.dart';
 
 class CategoryViewModel extends ChangeNotifier {
   bool _loading = false;
@@ -49,6 +49,29 @@ class CategoryViewModel extends ChangeNotifier {
     }
 
     setLoading(false);
+  }
+
+  postCategory(var data )async{
+    var response = await PostCategory.fetch(data!);
+    if(response is Success){
+      setCategoryListModel(response.response as List<CategoryModel>);
+    }
+    if(response is Failure){
+       Error categoryError =
+          Error(code: response.code, message: response.errorResponse);
+          setCategoryError(categoryError);
+    }
+  }
+
+  deleteCategory(String? idcategory) async{
+    var response = await CategoryService.fetchDelete(idcategory!);
+    if(response is Success){
+      setCategoryListModel(response.response as List<CategoryModel>);
+    } 
+    if(response is Failure){
+      Error categoryError= Error(code: response.code, message: response.errorResponse);
+      setCategoryError(categoryError);
+    }
   }
 
   CategoryModel findById(String categoryId) {
