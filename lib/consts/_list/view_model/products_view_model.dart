@@ -49,6 +49,21 @@ class ProductViewModel with ChangeNotifier {
     setLoading(false);
   }
 
+  deleteProduct(String? id) async {
+
+    var response = await ProductDelete.fetchDelete(id!);
+
+    if (response is Success) {
+      setProductListModel(response.response as List<ProductModel>);
+    }
+    if (response is Failure) {
+      Error productError =
+          Error(code: response.code, message: response.errorResponse);
+
+      setProductError(productError);
+    }
+  }
+
   ProductModel findById(String productId) {
     return productList.firstWhere((element) => element.id == productId);
   }
