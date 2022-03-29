@@ -27,3 +27,24 @@ class ProductService {
     }
   }
 }
+
+class ProductDelete {
+  static Future<Object> fetchDelete(String idProduct) async {
+    try {
+      var response = await http.delete(Uri.parse(PRODUCT_URL + "$idProduct"));
+
+      if (response.statusCode == 200) {
+        return Success(
+            code: 200, response: productModelFromJson(response.body));
+      }
+      return Failure(
+          code: PRODUCT_INVALID_RESPONSE, errorResponse: 'Invalid Response');
+    } on HttpException {
+      return Failure(code: NO_INTERNET, errorResponse: 'No Internet');
+    } on FormatException {
+      return Failure(code: INVALID_FORMAT, errorResponse: 'Invalid Format');
+    } catch (e) {
+      return Failure(code: UNKNOWN_ERROR, errorResponse: 'Unknown Error');
+    }
+  }
+}

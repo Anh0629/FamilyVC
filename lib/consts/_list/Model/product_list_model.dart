@@ -22,6 +22,8 @@ class ProductModel with ChangeNotifier {
     required this.category,
     required this.countInStock,
     required this.dateCreated,
+    required this.success,
+    required this.message,
   });
 
   String id;
@@ -32,6 +34,8 @@ class ProductModel with ChangeNotifier {
   Category category;
   int countInStock;
   DateTime dateCreated;
+  bool success;
+    String message;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["_id"],
@@ -42,6 +46,8 @@ class ProductModel with ChangeNotifier {
         category: Category.fromJson(json["category"]),
         countInStock: json["countInStock"],
         dateCreated: DateTime.parse(json["dateCreated"]),
+        success: json["success"],
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -53,6 +59,8 @@ class ProductModel with ChangeNotifier {
         "category": category.toJson(),
         "countInStock": countInStock,
         "dateCreated": dateCreated.toIso8601String(),
+        "success": success,
+        "message":message,
       };
 }
 
