@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/consts/_list/view_model/google-login-Firebase.dart';
 import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/auth/sign_up.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
   @override
@@ -39,13 +41,16 @@ class _LandingPageState extends State<LandingPage>
     animationController.dispose();
     super.dispose();
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: Container(
+          
       color: Colors.black.withOpacity(0.5),
       child: Stack(children: [
+        
         Container(
           child: Image.asset(
             'assets/images/giphy.gif',
@@ -219,22 +224,22 @@ class _LandingPageState extends State<LandingPage>
                             side: BorderSide(color: Colors.white, width: 3),
                           ),
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                      provider.googleLogin();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Icon(FontAwesome.google, color: Colors.red),
                         Text(
-                          'Google +',
+                          ' Google',
                           style: TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 17),
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        // Icon(
-                        //   Feather.user_plus,
-                        //   size: 18,
-                        // )
                       ],
                     )),
                 ElevatedButton(

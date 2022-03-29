@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
-import 'package:flutter_app/consts/_list/Model/product_list_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
-import 'package:flutter_app/screens/Widget/Feeds_products.dart';
 import 'package:flutter_app/screens/Widget/product/test1.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +16,7 @@ class _ProductDeleteScreenState extends State<ProductDeleteScreen> {
    final TextEditingController _categoryId = TextEditingController();
    
 
+  // ignore: unused_field
   String? _categoryValue;
   
 
@@ -27,7 +26,14 @@ class _ProductDeleteScreenState extends State<ProductDeleteScreen> {
         Provider.of<CategoryViewModel>(context);
         ProductViewModel productViewModel = Provider.of<ProductViewModel>(context);
     final productListByCategory = productViewModel.findByCategory(_categoryId.toString());
-
+    
+List<dynamic> list =[];
+var a = Map.fromIterable(productListByCategory);
+void maplist(){
+  a.forEach((key, value) {
+    list.add(value);
+  });
+}
 
 
 
@@ -51,7 +57,12 @@ class _ProductDeleteScreenState extends State<ProductDeleteScreen> {
                     print("value.id" + value.id);
 
                     print('----------------');
+                    print(a);
+                    print(list.toString());
+                    maplist();
+                    print('object');
                     print(productListByCategory);
+                    print(_categoryId.toString());
                     
                   });
                 },
@@ -62,6 +73,26 @@ class _ProductDeleteScreenState extends State<ProductDeleteScreen> {
                   textFromFieldWithTest1(_categoryId,'Id category',context)
                 ],),
               ),
+              Container(
+              color: Theme.of(context).backgroundColor,
+              padding: EdgeInsets.only(top: 8),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+               
+                children: List.generate(
+                  productListByCategory.length,
+                  (index) {
+                    return ChangeNotifierProvider.value(
+                      value: productListByCategory[index],
+                      
+                      
+                      
+                    );
+                  },
+                ),
+              ),
+            ),
              
         ]),
       ),
