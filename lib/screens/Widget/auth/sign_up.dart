@@ -13,6 +13,9 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
+
+
+
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
 
@@ -43,24 +46,28 @@ class _RegisterPageState extends State<RegisterPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  textFieldWidget(
-                    _usernameController,
-                    "Username",
-                    false,
-                    false,
-                  ),
+                   textFieldWidget(
+                        _usernameController,
+                        "Username",
+                        false,
+                        false,
+                  
+                   
+                      )
+                    ,
                   textFieldWidget(
                     _emailController,
                     "Email ",
                     false,
                     false,
                   ),
-                  textFieldWidget(
-                    _pwdController,
-                    "Password",
-                    true,
-                    true,
-                  ),
+                   textFieldWidget(
+                        _pwdController,
+                        "Password",
+                        true,
+                        true,
+                      )
+                    ,
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
@@ -78,6 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         
                         final a = _userSignUpViewModel.userModel;
                         print(_userSignUpViewModel.userModel);
+                        
 
                         if (a.status!) {
                           print('signup ok');
@@ -109,14 +117,16 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget textFieldWidget(TextEditingController controller, String hintText,
-      bool obscureText, bool suffixIcon) {
+      bool obscureText, bool suffixIcon, ) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextFormField(
         controller: controller,
         validator: (value) {
-          if (value!.isEmpty) {
+          if (value!.isEmpty){
             return 'Enter something';
+          }else if(value.length <6){
+            return 'value > 6';
           }
           return null;
         },

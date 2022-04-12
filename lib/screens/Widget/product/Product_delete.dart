@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
+import 'package:flutter_app/consts/_list/utils/global_method.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
-import 'package:flutter_app/screens/Widget/product/test1.dart';
 import 'package:provider/provider.dart';
 
 class ProductDeleteScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ void maplist(){
   });
 }
 
-
+GlobalMethods globalMethod = GlobalMethods();
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
@@ -46,7 +46,7 @@ void maplist(){
         child: Column(children: [
           DropdownButton<CategoryModel>(
                 items: _categoryViewModel.categoryList
-                    .map(bildDropdownMenuWithtest1)
+                    .map(globalMethod.bildDropdownMenuWithtest1)
                     .toList(),
                 hint: Text(_category.text),
                 onChanged: (value) {
@@ -70,7 +70,7 @@ void maplist(){
               Container(
                 
                 child: Column(children: [
-                  textFromFieldWithTest1(_categoryId,'Id category',context)
+              globalMethod.textFromFieldWithTest1(_categoryId,'Id category',context)
                 ],),
               ),
               Container(

@@ -1,6 +1,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/landing_page.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_swiper/flutter_swiper.dart' show Swiper;
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_app/consts/_list/Model/category_list_model.dart';
 import 'package:flutter_app/consts/_list/view_model/category_view_model.dart';
 import 'package:flutter_app/consts/_list/view_model/products_view_model.dart';
-import 'package:flutter_app/screens/Widget/auth/login.dart';
 import 'package:flutter_app/screens/Widget/category.dart';
 import 'package:flutter_app/screens/Widget/product_home_.dart';
 
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const LoginPage(),
+                builder: (context) => LandingPage(),
               ),
               (route) => false,
             );
