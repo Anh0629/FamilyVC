@@ -226,7 +226,7 @@ class _LandingPageState extends State<LandingPage>
                         )),
                     onPressed: () {
                       final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                      provider.googleLogin();
+                      provider.googleLogin(context);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

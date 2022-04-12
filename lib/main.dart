@@ -82,6 +82,9 @@ class MyApp extends StatelessWidget {
           }),
           ChangeNotifierProvider(create:(_){
             return GoogleSignInProvider();
+          }),
+          ChangeNotifierProvider(create: (_){
+            return GoogleSignInProvider();
           })
         ],
         child:

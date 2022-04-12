@@ -4,11 +4,10 @@ import 'package:flutter_app/screens/home.dart';
 // ignore: unused_import
 import 'package:flutter_app/screens/search.dart';
 import 'package:flutter_app/screens/user.dart';
-
 import 'screens/Widget/Cart/cart.dart';
 import 'screens/feeds.dart';
 import 'screens/home.dart';
-import 'screens/user.dart';
+
 
 class BottomBarScreen extends StatefulWidget {
   static const routeName = '/BottomBarScreen';

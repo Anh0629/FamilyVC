@@ -1,27 +1,28 @@
+import 'dart:developer';
 import 'dart:io';
-
-import 'package:flutter_app/consts/_list/Model/user_model.dart';
+import 'package:flutter_app/consts/_list/Model/middleware.dart';
 import 'package:flutter_app/consts/_list/repo/api_status.dart';
 import 'package:flutter_app/consts/_list/utils/constants.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
-class UserSignUpServices {
-  static Future<Object> userSignUp(var body) async {
+class UserPostMidd {
+  static Future<Object> userpostmidd(String token) async {
     try {
       var response = await http.post(
         Uri.parse(USER_SIGN_UP_URL),
-//http://localhost:4000/api/user/create
         headers: {
           'Content-Type': 'application/json',
+          'authorization': 'Bearer ' + token,
         },
-        // encode: Object => Json Object
-        body: json.encode(body),
       );
-      
 
+      print(USER_SIGN_UP_URL);
+      print(response.body);
+      print('User');
+      log(token);
       if (response.statusCode == 200) {
-        return Success(code: 200, response: userModelFromJson(response.body));
+        return Success(
+            code: 200, response: postUserMiddFromJson(response.body));
       }
       return Failure(
           code: PRODUCT_INVALID_RESPONSE, errorResponse: 'Invalid Response');

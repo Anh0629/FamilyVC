@@ -13,10 +13,10 @@ class SignUpViewModel with ChangeNotifier {
   UserModel get userModel => _userModel;
   Error get productError => _error!;
 
-  setLoading(bool loading) {
-    _loading = loading;
-    notifyListeners();
-  }
+  // setLoading(bool loading) {
+  //   _loading = loading;
+  //   notifyListeners();
+  // }
 
   setSignUpListModel(UserModel userModel) {
     _userModel = userModel;
@@ -27,7 +27,7 @@ class SignUpViewModel with ChangeNotifier {
   }
 
   userSignUp(var body) async {
-    setLoading(true);
+    // setLoading(true);
     var response = await UserSignUpServices.userSignUp(body);
     print(response);
     print('respon userSignUp');
@@ -42,7 +42,7 @@ class SignUpViewModel with ChangeNotifier {
       setSignUpError(productError);
     }
 
-    setLoading(false);
+    // setLoading(false);
     notifyListeners();
   }
 }
